@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+
+% Draw axes
+\draw[] (-5,0,0) -- (5,0,0);
+\draw[] (0,-5,0) -- (0,5,0);
+\draw[] (0,0,-5) -- (0,0,5);
+
+% Draw nodes
+\filldraw (0,0,0) circle (2px) node[below right] {\(\left(x,y,z\right)\)};
+\filldraw (4,0,0) circle (2px) node[below] {\(\left(x+\delta x,y,z\right)\)};
+\filldraw (-4,0,0) circle (2px) node[above] {\(\left(x-\delta x,y,z\right)\)};
+\filldraw (0,4,0) circle (2px) node[right] {\(\left(x,y+\delta y,z\right)\)};
+\filldraw (0,-4,0) circle (2px) node[right] {\(\left(x,y-\delta y,z\right)\)};
+\filldraw (0,0,4) circle (2px) node[above left] {\(\left(x,y,z+\delta z\right)\)};
+\filldraw (0,0,-4) circle (2px) node[below right] {\(\left(x,y,z-\delta z\right)\)};
+
+\end{tikzpicture}

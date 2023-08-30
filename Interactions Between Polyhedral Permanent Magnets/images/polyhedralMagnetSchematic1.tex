@@ -1,0 +1,28 @@
+\def\Lpontwo{10}
+\def\lpontwo{20}
+\def\Ltontwo{14}
+\def\ltontwo{4}
+\def\hh{25}
+\def\myscale{0.08}
+\def\mywidth{0.3}
+\tdplotsetmaincoords{70}{35}
+\begin{tikzpicture}[scale=\myscale,tdplot_main_coords]
+    % Define coordinates
+    \coordinate(1) at (-\Lpontwo,-\Lpontwo,0);
+    \coordinate(2) at (\Lpontwo,-\Lpontwo,0);
+    \coordinate(3) at (\Lpontwo,\Lpontwo,0);
+    \coordinate(4) at (-\Lpontwo,\Lpontwo,0);
+    \coordinate(5) at (-\lpontwo,-\lpontwo,-\hh);
+    \coordinate(6) at (\lpontwo,-\lpontwo,-\hh);
+    \coordinate(7) at (\lpontwo,\lpontwo,-\hh);
+    \coordinate(8) at (-\lpontwo,\lpontwo,-\hh);
+    
+    % Draw the shape
+    \draw (1) -- (2) -- (3) -- (4) -- cycle;
+    \draw (1) -- (5) -- (6) -- (7) -- (3);
+    \draw[dashed] (7) -- (8) -- (5);
+    \draw (2) -- (6);
+    \draw[dashed] (4) -- (8);
+    
+    \draw[->,thick] (0,0,-0.75*\hh) -- (0,0,-0.25*\hh) node[left,pos=0.5] {\(\mathbf{M}\)};
+\end{tikzpicture}

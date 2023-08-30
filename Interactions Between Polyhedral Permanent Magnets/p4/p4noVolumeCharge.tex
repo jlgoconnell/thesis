@@ -1,0 +1,17 @@
+Consider a magnetic material with constant permeability \(\mu_r\) and constant uniform remanence magnetisation \(\mathbf{B}_r\). According to Equation (\ref{eqn:p4equivalentMagnetisation}), this material will satisfy the equation
+\begin{equation}
+    \mathbf{M} = \frac{\mu_r - 1}{\mu} \mathbf{B} + \frac{1}{\mu} \mathbf{B}_r \text{.}
+\end{equation}
+To calculate the volume charge density \(\nabla \cdot \mathbf{M}\), take the divergence of both sides, giving
+\begin{equation}
+    \nabla \cdot \mathbf{M} = \nabla \cdot \left( \frac{\mu_r - 1}{\mu} \mathbf{B} \right) + \nabla \cdot \left( \frac{1}{\mu} \mathbf{B}_r \right) \text{.}
+\end{equation}
+However, under the assumption of constant permeability, the permeability terms can be taken out of the divergence,
+\begin{equation}\label{eqn:p4divM}
+    \nabla \cdot \mathbf{M} = \frac{\mu_r - 1}{\mu} \nabla \cdot \mathbf{B} + \frac{1}{\mu} \nabla \cdot \mathbf{B}_r \text{.}
+\end{equation}
+Maxwell's equations state that the \(\mathbf{B}\) field is solenoidal, \(\nabla \cdot \mathbf{B} = 0\). In addition, the assumption of constant uniform remanence magnetisation leads to \(\nabla \cdot \mathbf{B}_r = 0\). Consequently, the right side of Equation (\ref{eqn:p4divM}) becomes zero, and therefore
+\begin{equation}
+    \nabla \cdot \mathbf{M} = 0 \text{.}
+\end{equation}
+Thus, a material with constant uniform remanence magnetisation and constant permeability has no volume charge density and the volume integral for the charge method may be neglected.

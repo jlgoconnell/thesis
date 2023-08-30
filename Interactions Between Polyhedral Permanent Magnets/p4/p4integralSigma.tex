@@ -1,0 +1,24 @@
+Taking the divergence of Equation (\ref{eqn:p4equivalentMagnetisation}) inside the volume \(V\) of a magnetic body gives
+\begin{equation}
+    \nabla \cdot \mathbf{M} = \nabla \cdot \left( \frac{\mu_r-1}{\mu} \mathbf{B} \right) + \nabla \cdot \left( \frac{1}{\mu} \mathbf{B}_r \right) \text{.}
+\end{equation}
+Assuming the permeability \(\mu\) is constant (and thus \(\mu_r\) is also constant), the permeability terms may be taken out of the divergence operators,
+\begin{equation}
+    \nabla \cdot \mathbf{M} = \frac{\mu_r-1}{\mu} \nabla \cdot \mathbf{B} + \frac{1}{\mu} \nabla \cdot \mathbf{B}_r \text{.}
+\end{equation}
+However, we know that \(\mathbf{B}\) is divergence-free from Maxwell's equations. In addition, we are assuming that the remanence magnetisation inside the volume \(V\) is constant and uniform, implying it is also divergence-free. Therefore, inside the volume of a magnet, \(\nabla \cdot \mathbf{B} = 0\) and \(\nabla \cdot \mathbf{B}_r = 0\), and
+\begin{equation}
+    \nabla \cdot \mathbf{M} = 0 \text{.}
+\end{equation}
+We can then take the volume integral of this expression inside the volume \(V\), giving
+\begin{equation}
+    \iiint_V \nabla \cdot \mathbf{M}\ dv = 0 \text{.}
+\end{equation}
+Finally, since \(\mathbf{M}\) is assumed to be well-behaved inside the magnet, we can apply the divergence theorem to the integral, giving
+\begin{equation}
+    \oiint_S \mathbf{M} \cdot \hat{\mathbf{n}}\ ds = 0 \text{.}
+\end{equation}
+Since the surface charge density is given by \(\sigma = \mathbf{M} \cdot \hat{\mathbf{n}}\), we finally obtain
+\begin{equation}\label{eqn:p4integralSigma}
+    \oiint_S \sigma \ ds = 0 \text{.}
+\end{equation}

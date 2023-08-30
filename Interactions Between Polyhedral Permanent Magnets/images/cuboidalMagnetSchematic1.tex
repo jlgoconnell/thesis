@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+
+\newcommand \cc {1.2}
+
+\coordinate(nnn) at (-\cc*2,-\cc,-\cc*1.5);
+\coordinate(pnn) at (\cc*2,-\cc,-\cc*1.5);
+\coordinate(npn) at (-\cc*2,\cc,-\cc*1.5);
+\coordinate(ppn) at (\cc*2,\cc,-\cc*1.5);
+\coordinate(nnp) at (-\cc*2,-\cc,\cc*1.5);
+\coordinate(pnp) at (\cc*2,-\cc,\cc*1.5);
+\coordinate(npp) at (-\cc*2,\cc,\cc*1.5);
+\coordinate(ppp) at (\cc*2,\cc,\cc*1.5);
+
+\draw (ppp) -- (npp) -- (nnp) -- (pnp) -- cycle;
+\draw (npp) -- (npn) -- (ppn) -- (pnn) -- (pnp);
+\draw (ppp) -- (ppn);
+\draw[dashed] (npn) -- (nnn) -- (pnn);
+\draw[dashed] (nnn) -- (nnp);
+
+\draw[->,thick] (-0.2*\cc,-0.3*\cc,0.1*\cc) -- (0.2*\cc,0.3*\cc,-0.1*\cc) node[right,pos=0.5] {\(\mathbf{M}\)};
+
+\end{tikzpicture}

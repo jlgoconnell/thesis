@@ -1,0 +1,34 @@
+%\input{statementOfAuthorship2}
+%
+\section*{\LARGE Simplified equations for the magnetic field due to an arbitrarily-shaped polyhedral permanent magnet}
+James L.G. O'Connell, William S.P. Robertson, and Benjamin S. Cazzolato
+\section*{Abstract}\addcontentsline{toc}{section}{\protect\numberline{}Abstract}\label{sec:p2abstract}
+\input{p2/p2abstract}
+\section{Introduction}\label{sec:p2introduction}
+\input{p2/p2introduction}
+\section{Methodology}\label{sec:p2methodology}
+\input{p2/p2methodology}
+\section{Validation}\label{sec:p2validation}
+\input{p2/p2validation}
+\section{Conclusion}\label{sec:p2conclusion}
+\input{p2/p2conclusion}
+\begin{subappendices}
+\addcontentsline{toc}{section}{\protect\numberline{}Appendices}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+\renewcommand{\thesection}{Appendix \arabic{chapter}.\Alph{section}}
+\section{Derivation of \texorpdfstring{\(R\)}{R}}\label{sec:p2Rderivation}
+\input{p2/p2rDerivation}
+\section{Number of trapezia on a polyhedral surface}\label{sec:p2numtrap}
+\input{p2/p2numTrap}
+\section{Detailed validation results}\label{sec:p2detailedResults}
+\input{p2/p2detailedResults}
+\end{subappendices}
+\clearpage
+\section*{Author's remarks on Chapter \ref{chap:paper2}}
+In many magnetostatic analyses, the magnetic field is computed at a large number of points in space. As such, it is necessary to use a method which scales well with the number of field points. Upon comparison of the methods detailed in Chapters \ref{chap:paper1} and \ref{chap:paper2}, it can be seen that although the field equations in the current chapter are more complicated, the relatively expensive geometric deconstruction process only occurs once. Thus, when the field is computed at few points, the method outlined in Chapter \ref{chap:paper1} is preferred due to the simplified field equations. In contrast, when the field is to be computed at many points, the method in the current chapter is greatly preferred due to the effective scaling as the number of points increases. Furthermore, while only fields were calculated in this chapter, the force and torque methodology from Chapter \ref{chap:paper1} may be applied, leading to fast force and torque calculations.
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+
+\newpage
+\section*{References}
+\addcontentsline{toc}{section}{\protect\numberline{}References}
+\printbibliography[heading=none]

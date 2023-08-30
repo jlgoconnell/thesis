@@ -1,0 +1,40 @@
+%\input{statementOfAuthorship4}
+%
+\section*{\LARGE A non-iterative method to solve for magnetic fields, forces, and torques due to permanent magnets with non-unity relative permeability}
+James L.G. O'Connell, William S.P. Robertson, and Benjamin S. Cazzolato
+\section*{Abstract}\addcontentsline{toc}{section}{\protect\numberline{}Abstract}\label{sec:p4abstract}
+\input{p4/p4abstract}
+\section{Introduction}\label{sec:p4introduction}
+\input{p4/p4introduction}
+\section{Magnetic charge density}\label{sec:p4magneticChargeDensity}
+\input{p4/p4magneticChargeDensity}
+\section{Magnetic field calculation}\label{sec:p4magneticField}
+\input{p4/p4magneticField}
+\section{Force and torque}\label{sec:p4forceAndTorque}
+\input{p4/p4forceAndTorque}
+\section{Verification}\label{sec:p4verification}
+\input{p4/p4verification}
+\section{Computational performance}\label{sec:p4computationalPerformance}
+\input{p4/p4computationalPerformance}
+\section{Conclusion}\label{sec:p4conclusion}
+\input{p4/p4conclusion}
+\begin{subappendices}
+\addcontentsline{toc}{section}{\protect\numberline{}Appendices}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+\renewcommand{\thesection}{Appendix \arabic{chapter}.\Alph{section}}
+\section{Volume charge density}\label{sec:p4noVolumeCharge}
+\input{p4/p4noVolumeCharge}
+\section{Matrix invertibility}\label{sec:p4invertibleMatrix}
+\input{p4/p4invertibleMatrix}
+\section{Surface charge density over a magnet}\label{sec:p4integralSigma}
+\input{p4/p4integralSigma}
+\end{subappendices}
+\clearpage
+\section*{Author's remarks on Chapter \ref{chap:paper4}}
+This chapter presents the final article submitted in this thesis, and successfully modelled permanent magnets with non-unity relative permeability using a semi-analytic approach. While this method is fast and highly accurate, it does require the assumption of constant permeability, and is unable to accurately model non-linear magnetic materials. However, permanent magnets are generally highly linear in their operating regions, and as such this method models them accurately. While the approaches seen in Chapters \ref{chap:paper1} and \ref{chap:paper2} are considerably faster to evaluate than this method, they cannot model non-unity relative permeability and will see several percentage points of error when modelling real permanent magnets. This method is slower, but far more accurate, and when combined with the field equations from Chapter \ref{chap:paper2}, can accurately model any permanent magnet of any shape.
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+
+\newpage
+\section*{References}
+\addcontentsline{toc}{section}{\protect\numberline{}References}
+\printbibliography[heading=none]

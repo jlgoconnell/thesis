@@ -1,0 +1,25 @@
+Once the magnetic surface charges \(\bm{\sigma}\) are known, the magnetic field can be calculated using the magnetic charge model. The magnetic field \(\mathbf{B}\) at the point \(\mathbf{x}\), assuming constant permeability and remanence magnetisation, is given by
+\begin{equation}
+	\mathbf{B}\left( \mathbf{x} \right) = \frac{\mu_0}{4\pi} \oiint_{S} \sigma \left( \mathbf{x}' \right) \frac{\mathbf{x} - \mathbf{x}'}{\left| \mathbf{x} - \mathbf{x}' \right|^3} \ ds' \text{.}
+\end{equation}
+As above, the surface can be discretised and the surface charge term moved outside the integral to give an approximate solution,
+\begin{equation}
+	\mathbf{B}\left( \mathbf{x} \right) \approx \sum_i \frac{\mu_0}{4\pi} \sigma_i \iint_{S_i} \frac{\mathbf{x} - \mathbf{x}_i'}{\left| \mathbf{x} - \mathbf{x}_i' \right|^3} \ ds_i' \ \text{.}
+\end{equation}
+A \(3 \times N\) matrix \(B\) is defined as
+\begin{equation}
+    \hat{B} = \begin{bmatrix} \hat{\mathbf{B}}_1 & \hat{\mathbf{B}}_2 & \cdots & \hat{\mathbf{B}}_N \end{bmatrix} \text{,}
+\end{equation}
+where the columns are given by
+\begin{equation}
+	\hat{\mathbf{B}}_i\left(\mathbf{x}\right) = \frac{\mu_0}{4\pi} \iint_{S_i} \frac{\mathbf{x} - \mathbf{x}_i'}{\left| \mathbf{x} - \mathbf{x}_i' \right|^3} \ ds_i' \text{.}
+\end{equation}
+Here, \(\hat{B}\) is the magnetic flux density at the point \(\mathbf{x}\) due to every surface element having unity surface charge density. This can again be calculated using previously published equations from the current authors \cite{OConnell2020a}. Using this matrix, the field at \(\mathbf{x}\) is given by
+\begin{equation}
+	\mathbf{B}\left(\mathbf{x}\right) \approx \hat{B} \left(\mathbf{x}\right) \bm{\sigma} \text{.}
+\end{equation}
+If an external field is present, given by the \(3\times 1\) vector \(\mathbf{B}_\text{ext}\), this can simply be added to the field produced by the system, giving
+\begin{equation}
+    \mathbf{B}\left(\mathbf{x}\right) \approx \hat{B} \left(\mathbf{x}\right) \bm{\sigma} + \mathbf{B}_\text{ext}\left(\mathbf{x}\right) \text{,}
+\end{equation}
+where \(\mathbf{B}_\text{ext}\left(\mathbf{x}\right)\) is the external magnetic field at the point \(\mathbf{x}\).

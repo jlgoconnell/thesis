@@ -1,0 +1,87 @@
+\chapter*{Abstract}
+With the current trend toward industrial automation, efficient energy generation, and electric motor vehicles, permanent magnets are seeing more widespread use than ever before. They permeate our world, enabling sound generation through loudspeakers, mass data storage in the server farms keeping us online, and even the vibration motors in our pockets notifying us of new messages. Never before have permanent magnets seen such widespread use, and thus it is paramount to understand the interactions between them.
+
+
+The primary aim of this thesis is to investigate and model the magnetic fields produced by generalised polyhedral permanent magnets, and the forces and torques between them. To achieve this aim, two main objectives were identified.
+
+The first objective was to analytically solve the magnetic charge model field equations for arbitrary polyhedral permanent magnets with a relative permeability of unity. This was performed using two unique approaches, leading to two unique but equivalent sets of field solutions, with the first being more effective when the field is calculated at few points, and the second being more effective when the field is calculated at many points. These field solutions were implemented in MATLAB code with a focus on computation efficiency, thus reducing calculation time. The solutions may also be used to numerically integrate over the surface of another magnet to accurately estimate the force and torque imparted.
+
+The second objective was to derive a methodology to model the field due to a polyhedral permanent magnet with non-unity relative permeability. This was done by applying a surface mesh to a magnet, and allowing the `magnetic charge' on each surface element to vary based on the permeability and magnetic field passing through the element. This was derived in such a way that the field is calculated only once, with no iteration required. Rather, a matrix equation is solved to give the surface charge distribution, leading to calculations of the magnetic fields, forces, and torques based on the previous objective. This was again implemented in MATLAB code with focus on computation efficiency, leading to fast calculations.
+
+
+%The primary aim of this thesis is to investigate and model the interactions between generalised polyhedral permanent magnets. This is done by deriving new magnetic field equations for polyhedral permanent magnets using the magnetic charge model, and applying these equations to calculate forces and torques between these magnets. The field equations are exact and analytic, with the force and torque being numerically integrated. In addition, the effect of permeability is explored, and a methodology developed to estimate fields, forces, and torques due to permeable magnets. These methodologies have been validated using finite element simulations, showing accuracy and a significant increase in computation speed in comparison to finite element analysis.
+
+This thesis begins with a short prologue, giving a brief historical overview of the development of magnetism as a physical science. Chapter \ref{chap:introduction} follows, outlining the theory used for modelling magnets and giving a review of relevant literature.  Chapters \ref{chap:paper1} and \ref{chap:paper2} outline two new methods for calculating the magnetic field produced by general ideal polyhedral permanent magnets, each with benefits and drawbacks over the other. In addition, Chapter \ref{chap:paper1} found that a pair of pyramid frustum magnets produce a larger mutual force than a pair of cuboidal magnets, suggesting further investigation into frustum magnets. Chapter \ref{chap:paper3} applies the methodology from Chapter \ref{chap:paper2} to a planar array of frustum magnets, finding no significant benefit over traditional cuboidal planar arrays. Chapter \ref{chap:paper4} explores magnetic permeability, deriving a methodology to calculate magnetic fields, forces, and torques imparted by linear magnetic materials of polyhedral geometry. Finally, the thesis is concluded in Chapter \ref{chap:conclusion}, summarising the preceding chapters and outlining potential future work to follow this thesis.
+
+The primary outcome of this thesis is the development of a new methodology which can accurately and quickly compute the magnetic fields, forces, and torques imparted by magnetic materials of polyhedral geometry. The methodology allows for materials with constant non-unity relative permeability, more accurately reflecting permanent magnet materials and magnetic behaviour. Moreover, other geometries may be accurately approximated by polyhedra and the methodology applied, allowing the fast and accurate approximation of any current-free magnetostatic system.
+
+\newpage
+\chapter*{Declaration}
+I certify that this work contains no material which has been accepted for the award of any other degree or diploma in my name, in any university or other tertiary institution and, to the best of my knowledge and belief, contains no material previously published or written by another person, except where due reference has been made in the text. In addition, I certify that no part of this work will, in the future, be used in a submission in my name, for any other degree or diploma in any university or other tertiary institution without the prior approval of the University of Adelaide and where applicable, any partner institution responsible for the joint-award of this degree.
+
+The author acknowledges that copyright of published works contained within the thesis resides with the copyright holder(s) of those works.
+
+I also give permission for the digital version of my thesis to be made available on the web, via the University’s digital research repository, the Library Search and also through web search engines, unless permission has been granted by the University to restrict access for a period of
+time.
+
+I acknowledge the support I have received for my research through the provision of an Australian Government Research Training Program
+Scholarship.
+
+\vspace{1cm}
+
+\noindent Signed,
+
+\noindent \includegraphics[width=5cm]{jamesSignature.PNG}
+
+\noindent James O'Connell
+
+\noindent 15th December 2021
+
+
+\section*{Article reproduction}
+The journal articles included in this thesis have been reproduced with identical content as the accepted manuscript for the published articles in Chapters \ref{chap:paper1}, \ref{chap:paper2}, and \ref{chap:paper3}, and the submitted manuscript for the article under review in Chapter \ref{chap:paper4}. While the content is identical, the typesetting and formatting have been adapted to ensure consistency with the remainder of this thesis. As such, the
+\begin{itemize}
+    \item[-] placement and size of figures;
+    \item[-] placement and size of tables; and
+    \item[-] numbering of figures, tables, and references
+\end{itemize}
+may differ from the original article. Ampersands have been changed to the word `and' to maintain consistency in the thesis. In addition, the published articles may use American English spelling, but this thesis uses the Australian English spelling preferred by the author.
+
+\newpage
+\chapter*{Acknowledgements}
+I've been fortunate enough to have been surrounded by many amazing people throughout this project, and this thesis would not be possible without the support and assistance I've received. This section is dedicated to the wonderful people that have lent their expertise, support, and time.
+
+I'd firstly like to thank my principal supervisor, Dr Will Robertson. Without his suggestion to apply for a PhD a mere day before applications were due, I wouldn't have been filling out forms at four in the morning, and consequently wouldn't be where I am today. For years, he has shared his vast knowledge and passion for magnetism with me, and given me extensive advice on how to make my \LaTeX{} documents just a tiny bit better.
+
+I'd also like to thank my co-supervisor, Prof Benjamin Cazzolato. He constantly pushed me to do just a little better, resulting in me consistently exceeding my own expectations. His wealth of knowledge in finite element analysis assisted in the validation and verification of every piece of work I've done during this project.
+
+Thank you to my little brother, Dylan. He has always had my back and supported me in his own unique way. Thank you to my friends, who have paid attention (or pretended to pay attention) when I've rambled about how amazing magnets are.
+
+A big thank you to my officemates in S218. While the office may not have been the most productive environment, it was fun and friendly. During the difficult times in this project, they provided the laughs to keep me motivated and the compelling conversations about quality code to keep me curious.
+
+Finally, a massive thank you to my parents, Peter and Kylie. They saw my interest in science at a very young age, and nurtured it with books about space and robots. I'd have never developed such a fascination in mathematics, science, and engineering without their unwavering support and encouragement.
+
+
+%This thesis would not have been possible without the amazing people around me. I'd first like to thank my incredibly supportive parents. You realised my interest in mathematics and science from such an early age and nurtured it with exciting books about space and technology. I would never have developed such a fascination and love for science, mathematics, and engineering without your unwavering support and encouragement.
+
+%Thank you to my little brother. You've always been supportive in your own unique way, and have always been there for me when I needed. Thank you to my close friends and family for listening when I rambled about how amazing magnets are, and getting excited with me when I found something interesting.
+
+%And finally, a huge thank you to my supervirors, Will and Ben. Without your help, I'd never have been able to achieve a written thesis, let alone a single publication. Will, thank you for showing me how fascinating magnets are and how \LaTeX can create gorgeous documents. Ben, thank you for sharing with me your seemingly unending knowledge about finite element analysis. Above all else, a massive thank you to both of you for always pushing me to do just a little more and just a little better.
+
+\newpage
+\chapter*{List of publications arising from this thesis}
+
+%\vspace{1cm}
+\noindent J. L. G. O’Connell, W. S. P. Robertson, and B. S. Cazzolato, ``Analytic magnetic fields and semi-analytic forces and torques due to general polyhedral permanent magnets,'' in IEEE Transactions on Magnetics, vol. 56, no. 1, Jan. 2020, doi: 10.1109/TMAG.2019.2942538 (Chapter \ref{chap:paper1}).
+
+\vspace{0.5cm}
+\noindent J. L. G. O’Connell, W. S. P. Robertson, and B. S. Cazzolato, ``Simplified equations for the magnetic field due to an arbitrarily-shaped polyhedral permanent magnet,'' Journal of Magnetism and Magnetic Materials, vol. 510, Sep. 2020, doi: 10.1016/j.jmmm.2020.166894 (Chapter \ref{chap:paper2}).
+
+\vspace{0.5cm}
+\noindent J. L. G. O’Connell, W. S. P. Robertson, and B. S. Cazzolato, ``Optimization of the magnetic field produced by frustum permanent magnets for single magnet and planar Halbach array configurations,'' in IEEE Transactions on Magnetics, vol. 57, no. 8, Aug. 2021, doi: 10.1109/TMAG.2019.2942538 (Chapter \ref{chap:paper3}).
+
+\vspace{0.5cm}
+\noindent J. L. G. O'Connell, W. S. P. Robertson, and B. S. Cazzolato, ``A non-iterative method to solve for magnetic fields, forces, and torques due to permanent magnets with non-unity relative permeability,'' submitted to Journal of Magnetism and Magnetic Materials (Chapter \ref{chap:paper4}).
+
+\vspace{0.5cm}
+\noindent J. L. G. O'Connell, W. S. P. Robertson, and B. S. Cazzolato, ``Comparison of the magnetic field strength between frusta and cuboidal permanent magnets,'' Poster presentation at CEFC2020 (Appendix \ref{app:CEFC}).

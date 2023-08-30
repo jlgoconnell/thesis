@@ -1,0 +1,20 @@
+Let \(S\) be a polyhedron composed of \(F\) polygonal surfaces \(S_{\!i}\), and let \(n_i\) be the number of edges of the polygon \(S_{\!i}\).
+
+Consider one surface \(S_{\!i}\) (with \(n_i\) edges). Draw parallel lines across the surface of \(S_{\!i}\) passing through each vertex, creating up to \(n_i-1\) trapezia, \(T_{\!j}\), as shown in Figure \ref{fig:p2polyhedrondecompositionb}. Repeat for all surfaces \(S_{\!i}\). The maximum total number of trapezia on the surface of the polyhedron \(S\) is then
+
+\begin{align*}
+N_{\text{trapezia}} &= \sum_{i=1}^F \left( n_i - 1\right) \\
+&= \left( \sum_{i=1}^F n_i\right) - F \text{.}
+\end{align*}
+
+Now, the summation term is counting each edge of each face \(S_{\!i}\). However, since each edge is shared between two faces, the summation term counts each edge twice. Therefore,
+
+\begin{align*}
+\sum_{i=1}^F n_i = 2E \text{,}
+\end{align*}
+
+\noindent where \(E\) is the number of edges of the polyhedron. Hence,
+
+\begin{align*}
+N_{\text{trapezia}} = 2E - F \text{.}
+\end{align*}

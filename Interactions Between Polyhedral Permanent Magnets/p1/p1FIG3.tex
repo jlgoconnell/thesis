@@ -1,0 +1,93 @@
+\begin{subfigure}{0.4\textwidth}
+		\centering
+		\tdplotsetmaincoords{70}{130}
+		\begin{tikzpicture}[scale=0.2,tdplot_main_coords]
+		\coordinate(b1) at (10,-6,3);
+		\coordinate(b2) at (10,6,3);
+		\coordinate(b3) at (-10,6,3);
+		\coordinate(b4) at (-10,-6,3);
+		\coordinate(b5) at (10,-6,-3);
+		\coordinate(b6) at (10,6,-3);
+		\coordinate(b7) at (-10,6,-3);
+		
+		\draw (b1) -- (b2) -- (b3) -- (b4) -- cycle;
+		\draw (b5) -- (b6) -- (b7);
+		\draw (b1) -- (b5);
+		\draw (b2) -- (b6);
+		\draw (b3) -- (b7);
+		
+		\coordinate(t1) at (2,-14,11);
+		\coordinate(t2) at (2,6,11);
+		\coordinate(t3) at (-10,6,11);
+		\coordinate(t4) at (-10,-14,11);
+		\coordinate(t5) at (2,-14,5);
+		\coordinate(t6) at (2,6,5);
+		\coordinate(t7) at (-10,6,5);
+		
+		\draw[fill=white] (t1) -- (t2) -- (t6) -- (t5);
+		\draw[fill=white] (t2) -- (t3) -- (t7) -- (t6);
+		\draw (t5) -- (t1) -- (t4) -- (t3);
+		
+		\coordinate(midpt) at (2,-4,8);
+		\coordinate(end) at (12,-4,8);
+		
+		\draw[->,dashed] (midpt) -- (end);
+		
+		\node(d) at (14.5,-3,8.5) {\textit{d}};
+		\node(A) at (0,6,0) {\text{A}};
+		\node(B) at (-4,6,8) {\text{B}};
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	~ \hspace{1cm}
+	\begin{subfigure}{0.4\textwidth}
+		\centering
+		\tdplotsetmaincoords{90}{180}
+		\begin{tikzpicture}[scale=0.2,tdplot_main_coords]
+		\coordinate(b1) at (10,-6,3);
+		\coordinate(b2) at (10,6,3);
+		\coordinate(b3) at (-10,6,3);
+		\coordinate(b4) at (-10,-6,3);
+		\coordinate(b5) at (10,-6,-3);
+		\coordinate(b6) at (10,6,-3);
+		\coordinate(b7) at (-10,6,-3);
+		
+		\draw (b1) -- (b2) -- (b3) -- (b4) -- cycle;
+		\draw (b5) -- (b6) -- (b7);
+		\draw (b1) -- (b5);
+		\draw (b2) -- (b6);
+		\draw (b3) -- (b7);
+		
+		\coordinate(t1) at (2,-14,11);
+		\coordinate(t2) at (2,6,11);
+		\coordinate(t3) at (-10,6,11);
+		\coordinate(t4) at (-10,-14,11);
+		\coordinate(t5) at (2,-14,5);
+		\coordinate(t6) at (2,6,5);
+		\coordinate(t7) at (-10,6,5);
+		
+		\draw[fill=white] (t1) -- (t2) -- (t6) -- (t5);
+		\draw[fill=white] (t2) -- (t3) -- (t7) -- (t6);
+		\draw (t5) -- (t1) -- (t4) -- (t3);
+		
+		\coordinate(midpt) at (2,-4,8);
+		\coordinate(end) at (6,-4,8);
+		
+		\draw[->,dashed] (midpt) -- (end);
+		\node(d) at (7,-3,8) {\textit{d}};
+		
+		\draw[->,thick] (-4,0,6.5) -- (-4,0,9.5);
+		\node (M1) at (-2.5,0,8) {\textbf{M}};
+		\draw[->,thick] (0,0,-1.5) -- (0,0,1.5);
+		\node (M2) at (1.5,0,0) {\textbf{M}};
+		
+		\node (A) at (-8,6,0) {\text{A}};
+		\node(B) at (-8,6,8) {\text{B}};
+		
+		\draw [->] (-15,-4,-3) -- (-12,-4,-3);
+		\draw [->] (-15,-4,-3) -- (-15,-4,0);
+		\node (x) at (-11,-4,-3) {\(x\)};
+		\node (z) at (-15,-4,1) {\(z\)};
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}

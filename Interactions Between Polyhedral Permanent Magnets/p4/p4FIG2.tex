@@ -1,0 +1,33 @@
+\begin{tikzpicture}
+
+% Set up coordinates of vertices
+\coordinate(toptl) at (-1,3);
+\coordinate(toptr) at (1,3);
+\coordinate(topbl) at (-1,1);
+\coordinate(topbr) at (1,1);
+\coordinate(bottl) at (-1,0);
+\coordinate(bottr) at (1,0);
+\coordinate(botbl) at (-1,-2);
+\coordinate(botbr) at (1,-2);
+
+% Draw magnets
+\draw (toptl) -- (toptr) -- (topbr) -- (topbl) -- cycle;
+\draw (bottl) -- (bottr) -- (botbr) -- (botbl) -- cycle;
+
+% Draw magnetisation vectors
+\draw[->,thick] (0,2.5) -- (0,1.5);
+\draw[->,thick] (0,-1.5) -- (0,-0.5);
+\node(Mtop) at (0.5,2) {\(\mathbf{B}_{r\text{,top}}\)};
+\node(Mbot) at (0.5,-1) {\(\mathbf{B}_{r\text{,bot}}\)};
+
+% Draw dimensions
+\draw[<->] (2,3) -- (2,1);
+\node(lsidetop) at (2.3,2) {\(l\)};
+\draw[<->] (-2,1) -- (-2,0);
+\node(d) at (-1.7,0.5) {\(d\)};
+\draw[<->] (2,0) -- (2,-2);
+\node(lsidebot) at (2.3,-1) {\(l\)};
+\draw[<->] (-1,-3) -- (1,-3);
+\node(lunder) at (0,-2.8) {\(l\)};
+
+\end{tikzpicture}

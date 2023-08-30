@@ -1,0 +1,181 @@
+\documentclass[11pt,a4paper,twoside]{book}
+\usepackage[utf8]{inputenc}
+%\includeonly{}
+
+\usepackage[giveninits=true,maxcitenames=2,style=numeric-comp,maxbibnames=9,sorting=nyt,refsection=chapter,isbn=false,url=false,doi=false,backend=biber]{biblatex}
+%\usepackage[style=numeric-comp,maxbibnames=9,sorting=none,isbn=false,url=false,backend=biber]{biblatex}
+%\usepackage{sectsty}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{siunitx}
+\usepackage[title]{appendix}
+\usepackage{esint}
+\usepackage{bm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{blindtext}
+\usepackage[font=itshape]{quoting}
+\usepackage{comment}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage{titleref}
+\usepackage{microtype}
+\usepackage{tocloft}
+\usepackage[labelfont=sc]{caption}
+\usepackage[labelfont={}]{subcaption}
+
+% General commands
+\addbibresource{References.bib}
+\DeclareMathOperator{\sgn}{\text{sgn}}
+\def\myscale{0.8}
+\DeclareFieldFormat{titlecase}{\MakeSentenceCase{#1}}
+\setlength{\headheight}{26pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%\setlength{\footheight}{26pt}
+%\renewcommand{\sectionmark}[1]{\rightmark{}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\fancyhead[LE,RO]{\scshape Chapter\ \thechapter}
+%\renewcommand{\chaptermark}[1]{%
+%\markboth{\chaptername
+%\ \thechapter}{}}
+%\renewcommand{\sectionmark}[1]{\markright{#1}}
+%\allsectionsfont{\normalfont\scshape}
+\titleformat{\chapter}[display]{\raggedright\normalfont\Huge\scshape}{Chapter \thechapter}{1em}{}
+\titleformat{\section}[hang]{\raggedright\normalfont\Large\scshape}{\thesection}{1em}{}
+\titleformat{\subsection}[hang]{\raggedright\normalfont\large\scshape}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[hang]{\raggedright\normalfont\scshape}{}{1em}{}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+\renewcommand{\baselinestretch}{1.15}
+\makeatletter
+    \def\@pnumwidth{2em}
+\makeatother
+
+\pagenumbering{gobble}
+
+% Set up title page
+%\title{Interactions Between Polyhedral Permanent Magnets}
+%\author{James O'Connell}
+%\date{2021}
+
+\begin{document}
+%\maketitle
+
+\begin{titlepage}    
+    \begin{flushright}   
+        \vspace*{2cm}
+        \Huge
+        \hrule
+        \vspace*{2mm}
+        Interactions between polyhedral permanent magnets
+        \vspace*{2mm}
+        \hrule
+        
+        \vspace{1cm}
+        \LARGE
+        James Lawrence Grady O'Connell
+        
+        \vspace{2.5cm}
+        \Large
+        A thesis presented for the degree of
+        
+        \LARGE
+        Doctor of Philosophy
+        
+        \vspace{3cm}
+        \large
+        School of Mechanical Engineering
+        
+        The University of Adelaide
+        
+        Australia
+        
+        \vspace{1cm}
+        Submitted in
+        
+        December, 2021
+    \end{flushright}
+\end{titlepage}
+
+% Pre-book stuff
+\include{prebook}
+
+\renewcommand{\cftchapfont}{\normalfont \scshape}
+\makeatletter
+    \renewcommand{\@tocrmarg}{5em plus1fil}
+\makeatother
+\tableofcontents
+
+% Thesis content
+%\setcounter{chapter}{-1}
+\pagestyle{fancy}
+\fancyhead[RO]{\scshape \nouppercase \currentname}
+\fancyhead[LE]{}
+\fancyhead[LO,RE]{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[CE,CO]{}
+\chapter*{Prologue}\addcontentsline{toc}{chapter}{\protect\numberline{}Prologue}\label{chap:prologue}
+\pagenumbering{roman}
+\input{prologue}
+\chapter{Introduction}\label{chap:introduction}
+\fancyhead[LE]{\scshape Chapter\ \ref{chap:introduction}}
+\pagenumbering{arabic}
+\input{introduction}
+\chapter{Magnetic field computation optimised for few points}\label{chap:paper1}
+\fancyhead[LE]{\scshape Chapter\ \ref{chap:paper1}}
+In general, the magnetic field produced by a permanent magnet is difficult to calculate, with the difficulty increasing considerably with complicated geometries. Polyhedral magnets have been explored in literature, but often the expressions are long and complicated, and limited work has been done on force and torque evaluation. This chapter presents the first of two methodologies for calculating the magnetic field produced by ideal polyhedral permanent magnets. Field equations are derived based on square root, logarithmic, and arctangent functions, leading to high computation speed. In addition, force and torque estimations are presented and validated using finite element analysis (with unity relative permeability) and past literature where available. As is discussed in Chapter \ref{chap:paper2}, this methodology is the more effective of the two when the field is to be computed at few (\(\leq 10\)) points in space.
+\include{paper1}
+\chapter{Magnetic field computation optimised for many points}\label{chap:paper2}
+\fancyhead[LE]{\scshape Chapter\ \ref{chap:paper2}}
+While Chapter \ref{chap:paper1} outlined a method to compute the magnetic field produced by an ideal polyhedral permanent magnet, several limitations existed in scaling with number of field points and singularity treatment. This chapter presents and validates a new field computation methodology which scales well with the number of field points and treats any singularities present in the field equations. Validation is performed using finite element analysis on magnetic systems with unity relative permeability. In contrast to the method outlined in Chapter \ref{chap:paper1}, the method detailed in this chapter only requires one deconstruction of geometry, independent of the number of field points. However, the field equations presented in this chapter are more complicated than those found in Chapter \ref{chap:paper1}. Therefore, when the field is computed at few points, the computational cost associated with more complicated field equations outweighs the advantage of only one deconstruction routine, and the method in Chapter \ref{chap:paper1} is preferred. In contrast, when the field is computed at many points, the method outlined in the current chapter greatly outperforms that from Chapter \ref{chap:paper1}.
+
+Most applications, including those found in this thesis, are concerned with field calculations at many points, such as force and torque evaluations, optimisation of the field distribution (Chapter \ref{chap:paper3}), and permeability modelling (Chapter \ref{chap:paper4}). Thus, the method detailed in the current chapter is often the preferred method for magnetic field calculation due to a polyhedral permanent magnet.
+%While the set of field equations presented in Chapter \ref{chap:paper1} are effective, they suffer from one main drawback, which limits the computation speed, especially when used for force and torque estimations. Although the field equations themselves are simple, the methodology requires processing of the geometry for each calculation. This processing is relatively expensive in computation time, and is required for every point the field is to be calculated at. Thus, if the field is to be evaluated at \(n\) points in space, the geometry processing algorithm must be performed \(n\) times, leading to longer calculation times. This is particularly problematic for force and torque estimations, where many field calculation must be performed for accurate estimations.
+%To alleviate this, a new field calculation methodology was derived, and presented in this chapter. The field equations in this chapter are far more complicated than those seen in Chapter \ref{chap:paper1}, but the geometry processing is performed only once, regardless of the number of points the field is to be calculated at. Thus, if the field is to be evaluated at many points, the methodology in this chapter is far more effective, and is suggested for force and torque estimations.
+\include{paper2}
+\chapter{Optimisation of frustum magnet geometry}\label{chap:paper3}
+\fancyhead[LE]{\scshape Chapter\ \ref{chap:paper3}}
+With the development of fast magnetic field equations in Chapter \ref{chap:paper2}, multivariable optimisation of magnetic systems is possible. This chapter presents two such optimisation cases, where the geometry of a singular frustum magnet is varied to maximise the field strength above it for a constant magnet volume, and the geometry of frustum magnets in a planar array are varied to produce a more desirable magnetic field distribution above the array for a constant array volume. Due to the high computation speed of the methodology presented in Chapter \ref{chap:paper2}, these optimisation routines are able to quickly find a solution to the convex problem, resulting in fast optimisation of magnetic systems.
+\include{paper3}
+\chapter{Modelling permeable magnets}\label{chap:paper4}
+\fancyhead[LE]{\scshape Chapter\ \ref{chap:paper4}}
+While the methodologies presented in previous chapters are fast and accurate, they are based on idealised permanent magnets with the assumption of a relative permeability of unity. However, most modern permanent magnet materials have a relative permeability in the range of 1.05--1.3, leading to a small overestimation in the fields, forces, and torques associated with these magnets. To minimise this overestimation, magnetic permeability must be incorporated into the magnetic model. Past literature has explored the effect of magnetic permeability, but this is usually done through an iterative method, in which the field is calculated several times. This chapter presents and validates a methodology to solve a magnetic system without iteration. Specifically, the field is calculated only once, with a matrix inversion performed to solve for the magnetic surface charges, allowing the calculation of the fields, forces, and torques. Validation is performed using finite element simulations, but assumes non-unity relative permeability.
+\include{paper4}
+\chapter{Thesis summary}\label{chap:conclusion}
+\fancyhead[LE]{\scshape Chapter\ \ref{chap:conclusion}}
+\input{conclusion}
+\appendix
+\addcontentsline{toc}{chapter}{\protect\numberline{}Appendices}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+%\renewcommand{\thesection}{Appendix \arabic{chapter}.\Alph{section}}
+\titleformat{\chapter}[display]{\normalfont\Huge\scshape}{Appendix \thechapter}{1em}{}
+\chapter{Derivation of the magnetic charge model}\label{app:chargeModelDerivation}
+\fancyhead[LE]{\scshape Appendix\ \ref{app:chargeModelDerivation}}
+\input{appendixA}
+\chapter{Derivation of the magnetic field equations defined in Chapter~\ref{chap:paper2}}\label{app:fieldEquations}
+\fancyhead[LE]{\scshape Appendix\ \ref{app:fieldEquations}}
+\input{p2proofs}
+\chapter{Further geometric, magnetic, and finite-element information}\label{app:geomInfo}
+\fancyhead[LE]{\scshape Appendix\ \ref{app:geomInfo}}
+\input{geomInfo}
+%\chapter{Mesh sizing and computation time for finite element simulations}\label{app:feaData}
+%\fancyhead[LE]{\scshape Appendix\ \ref{app:feaData}}
+%\input{feaData}
+\chapter{Conference on Electromagnetic Field Computation}\label{app:CEFC}
+\fancyhead[LE]{\scshape Appendix\ \ref{app:CEFC}}
+Before starting work on Chapter \ref{chap:paper3}, an investigation was conducted on planar magnetic arrays and submitted to the Conference on Electromagnetic Field Computation in Italy, 2020. The work was presented as a poster, and is included on the following page.
+\includepdf[]{CEFC2020pdf}
+
+%\printbibliography[title=References]
+
+\end{document}

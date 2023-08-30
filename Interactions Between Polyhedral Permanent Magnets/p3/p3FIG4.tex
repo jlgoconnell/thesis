@@ -1,0 +1,88 @@
+
+
+\begin{subfigure}[t]{\linewidth}
+
+\centering
+\tdplotsetmaincoords{70}{45}
+\begin{tikzpicture}[scale=0.1,tdplot_main_coords]
+
+% Define coordinates:
+\coordinate(ppb) at (20,20,-20);
+\coordinate(pnb) at (20,-20,-20);
+\coordinate(nnb) at (-20,-20,-20);
+\coordinate(npb) at (-20,20,-20);
+\coordinate(ppt) at (10,10,0);
+\coordinate(pnt) at (10,-10,0);
+\coordinate(nnt) at (-10,-10,0);
+\coordinate(npt) at (-10,10,0);
+
+% Fill in polygons:
+\filldraw[fill=white] (ppt) -- (pnt) -- (nnt) -- (npt) -- cycle;
+\filldraw[fill=white] (ppt) -- (ppb) -- (pnb) -- (pnt) -- cycle;
+\filldraw[fill=white] (pnt) -- (nnt) -- (nnb) -- (pnb) -- cycle;
+
+% Axes:
+\def\lim{13}
+\draw[->] (0,0,0) -- (\lim,0,0);
+\draw[->] (0,0,0) -- (0,\lim,0);
+\draw[->] (0,0,0) -- (0,0,\lim);
+\node(xaxis) at (\lim+2,0,0) {\(x\)};
+\node(yaxis) at (0,\lim+2,0) {\(y\)};
+\node(zaxis) at (0,0,\lim+2) {\(z\)};
+
+\end{tikzpicture}
+
+\subcaption{}
+\label{subfig:p3frustum3d}
+
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[t]{\linewidth}
+
+\centering
+\begin{tikzpicture}[scale = 0.2]
+
+\def\LL{5}
+\def\ll{10}
+\def\hh{10}
+
+% Define coordinates:
+\coordinate(tl) at (-\LL,0);
+\coordinate(tr) at (\LL,0);
+\coordinate(bl) at (-\ll,-\hh);
+\coordinate(br) at (\ll,-\hh);
+
+% Draw shape
+\draw (tl) -- (tr) -- (br) -- (bl) -- cycle;
+
+% Draw axes
+\def\arrowlim{7}
+\draw[->] (0,0) -- (\arrowlim,0);
+\draw[->] (0,0) -- (0,\arrowlim);
+\node(x) at (\arrowlim+1,0) {\(x\)};
+\node(z) at (0,\arrowlim+1) {\(z\)};
+
+% Draw dimensions
+\def\hoffset{12}
+\draw[<->] (\hoffset,0) -- (\hoffset,-\hh);
+\node(h) at (\hoffset+1,-5) {\(h\)};
+\node(l) at (0,-\hh-1.5) {\(l\)};
+\node(L) at (0,-1.5) {\(L\)};
+\node(theta) at (-7.5,-8.5) {\(\theta\)};
+
+% Draw an invisible line to centre the figure
+\draw[<->,white] (-\hoffset-2,0) -- (-\hoffset-2,-\hh);
+
+% Draw magnetisation vector
+\draw[->,thick] (0,-8) -- (0,-4);
+\node(M) at (1.5,-6) {\(\mathbf{M}\)};
+
+\end{tikzpicture}
+
+\subcaption{}
+\label{subfig:p3frustumschematic}
+
+\end{subfigure}
+

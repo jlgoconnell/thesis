@@ -1,0 +1,86 @@
+This section includes more detailed information from Section \ref{sec:p2validation}, where the algorithm presented in this paper was validated using finite element simulations (FEA) and literature. The calculation time of each method and the error associated with each comparison is given.
+
+\subsection*{Pyramid frustum magnet}
+
+For this comparison, the field was calculated across a 301\(\times\)301 grid across a 30mm\(\times\)30mm region. The maximum field strength and RMS field strength for both analytical and FEA methods are given by
+
+\begin{equation}\label{eqn:p2bmax}
+	B_{\text{max}} = \text{max}\left(\left|\mathbf{B}_i\right|\right) \text{,}
+\end{equation}
+
+\begin{equation}\label{eqn:p2brms}
+	B_{\text{RMS}} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} \left| \mathbf{B}_i \right| ^2} \text{,}
+\end{equation}
+
+\noindent where \(n\) is the number of points at which the field is calculated and \(\mathbf{B}_i\) is the magnetic field at the \(i\)th point. The error between FEA and analytic evaluations is given by
+
+\begin{equation}
+\varepsilon_i = \Big|\big|\mathbf{B}_{\text{analytic,}i}\big|-\big|\mathbf{B}_{\text{FEA,}i}\big|\Big| \text{,}
+\end{equation}
+
+\noindent with the maximum and RMS error are defined as
+
+\begin{equation}\label{eqn:p2errmax}
+	\varepsilon_{\text{max}} = \text{max}\left(\varepsilon_i\right) \text{,}
+\end{equation}
+
+\begin{equation}\label{eqn:p2errrms}
+	\varepsilon_{\text{RMS}} = \sqrt{\frac{1}{n} \sum_{i = 1}^n \varepsilon_i^2} \text{.}
+\end{equation}
+
+\noindent The percentage errors were also calculated by dividing the error at each point by the analytic magnetic field strength at that point,
+
+\begin{equation}\label{eqn:p2errpc}
+	\varepsilon_{\text{\%,}i} = \frac{\varepsilon_i}{\left|\mathbf{B}_{\text{analytic,}i}\right|} \times 100\% \text{.}
+\end{equation}
+
+\noindent The maximum and RMS percentage errors \(\varepsilon_{\text{\%,max}}\) and \(\varepsilon_{\text{\%,RMS}}\) were also calculated using equations similar to Equations (\ref{eqn:p2errmax}) and (\ref{eqn:p2errrms}). Results are shown in Table \ref{tab:p2frustumstats}. These results indicate strong agreement between the analytic methodology proposed in this paper and FEA simulations, with a maximum error less than 1 percent, indicating the analytic methodology is providing correct field computations.
+
+\begin{table}
+	\centering
+	\caption{Results from the frustum magnet field calculation. The analytic calculation and FEA simulation produce similar results, with a maximum error of less than 1 percent between the two. The time taken to evaluate the analytic field is 0.3144\si{\second} for 90601 field points (averaging 3.470\si{\micro\second} per point).}
+	\label{tab:p2frustumstats}
+	\begin{tabular}{l | c c}
+		& Analytic & FEA \\
+		\hline
+		\rule{0pt}{2.5ex}Time\textsubscript{total} (\si{\second}) & \num{0.3144} & 2462 \\
+		\(B_{\text{max}}\) (\si{\tesla}) & 0.6332 & 0.6362 \\
+		\(B_{\text{RMS}}\) (\si{\tesla}) & 0.4744 & 0.4743 \\
+		\(\varepsilon_{\text{max}}\) (\si{\tesla}) &  & \num{4.042e-3} \\
+		\(\varepsilon_{\text{RMS}}\) (\si{\tesla}) &  & \num{5.590e-4} \\
+		\(\varepsilon_{\text{\%,max}}\) (\%) & & 0.7185 \\
+		\(\varepsilon_{\text{\%,RMS}}\) (\%) & & 0.1316 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection*{Cylindrical magnet}
+The maximum and RMS field strengths were defined according to Equations (\ref{eqn:p2bmax}) and (\ref{eqn:p2brms}), and the polyhedral error and FEA error were defined as
+\begin{equation}
+	\varepsilon_{\text{polyhedron}} = \Big|\big|\mathbf{B}_{\text{cylinder,}i}\big| - \big|\mathbf{B}_{\text{polyhedron,}i}\big|\Big| \text{,}
+\end{equation}
+\begin{equation}
+	\varepsilon_{\text{FEA}} = \Big|\big|\mathbf{B}_{\text{cylinder,}i}\big| - \big|\mathbf{B}_{\text{FEA,}i}\big|\Big| \text{,}
+\end{equation}
+\noindent where \(\mathbf{B}_{\text{cylinder}}\) is the exact magnetic field \cite{Caciagli2018}. The maximum and RMS errors were defined according to Equations (\ref{eqn:p2errmax}) and (\ref{eqn:p2errrms}), with the percentage errors being defined as
+\begin{equation}
+	\varepsilon_{\text{\%,}i} = \frac{\varepsilon_i}{\left|\mathbf{B}_{\text{cylinder,}i}\right|}\times100\% \text{.}
+\end{equation}
+\noindent The maximum and RMS percentage errors \(\varepsilon_{\text{\%,max}}\) and \(\varepsilon_{\text{\%,RMS}}\) were also calculated using equations similar to Equations (\ref{eqn:p2errmax}) and (\ref{eqn:p2errrms}). Results are shown in Table \ref{tab:p2cylinderstats}. Even though the cylinder was approximated as a polyhedron, the errors between the cylindrical field results, polyhedral field results, and FEA results are small. The FEA results had a maximum percentage error less than 1 percent when compared to the cylindrical calculation, whereas the polyhedral approximation had a maximum error less than 0.05 percent when compared to the analytic cylindrical calculation \cite{Caciagli2018}. This indicates that even with a polyhedral approximation of a cylinder, the analytic methodology proposed in this paper can give more accurate results than FEA. Additionally, the polyhedral approximation was considerably faster to evaluate than the FEA simulations. Furthermore, these results suggest that polyhedral approximations can provide accurate field computations for curved surfaces.
+\begin{table}
+	\centering
+	\caption{Results from the cylindrical magnet field calculation. The polyhedral field and FEA field were compared against the analytic cylindrical field \cite{Caciagli2018}. The FEA results had an error less than 1 percent, whereas the polyhedral results had an error less than 0.05 percent. The total time taken to evaluate the magnetic field at 90601 points was 0.1304\si{\second} (averaging 1.439\si{\micro\second} per point) for the cylindrical calculation and 0.8668\si{\second} (averaging 9.567\si{\micro\second} per point) for the polyhedral calculation.}
+	\label{tab:p2cylinderstats}
+	\begin{tabular}{l | c c c}
+		& Cylinder \cite{Caciagli2018} & Polyhedron & FEA \\
+		\hline
+		\rule{0pt}{2.5ex}Time\textsubscript{total} (\si{\second}) & 0.1304 & 0.8668 & 2258 \\
+		\(B_{\text{max}}\) (\si{\tesla}) & 0.5710 & 0.5710 & 0.5731 \\
+		\(B_{\text{RMS}}\) (\si{\tesla}) & 0.3815 & 0.3815 & 0.3814 \\
+		\(\varepsilon_{\text{max}}\) (\si{\tesla}) & & \num{2.139e-4} & \num{3.337e-3} \\
+		\(\varepsilon_{\text{RMS}}\) (\si{\tesla}) & & \num{3.534e-5} & \num{4.898e-4} \\
+		\(\varepsilon_{\text{\%,max}}\) (\%) & & \num{4.317e-2} & 0.8118 \\
+		\(\varepsilon_{\text{\%,RMS}}\) (\%) & & \num{7.436e-3} & 0.1612 \\
+		\hline
+	\end{tabular}
+\end{table}

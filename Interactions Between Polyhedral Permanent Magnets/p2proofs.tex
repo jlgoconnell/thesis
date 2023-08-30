@@ -1,0 +1,506 @@
+The field equations derived in Chapter \ref{chap:paper2} took a great deal of effort and analysis to produce. This appendix details the derivation of these field equations.
+
+\section{First component of the field equations}
+To begin, we will solve the \(x-\)integral given by
+\begin{align}
+    B_x = \frac{\mu_0 \mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \int_{x_1}^{x_2} \int_{m_1x'+c_1}^{m_2x'+c_2} \frac{x_r-x'}{\left(\left(x_r-x'\right)^2+\left(y_r-y'\right)^2+\left(z_r-z'\right)^2\right)^\frac{3}{2}}\ dy' dx' \text{.}
+\end{align}
+We first consider the inner integral \(I_{xy'}\),
+\begin{align}
+    I_{xy'} = \int_{m_1x'+c_1}^{m_2x'+c_2} \frac{x_r-x'}{\left(\left(x_r-x'\right)^2+\left(y_r-y'\right)^2+\left(z_r-z'\right)^2\right)^\frac{3}{2}}\ dy' \text{.}
+\end{align}
+The numerator is a constant with respect to \(y'\) and can be taken out of the integral,
+\begin{align}\label{eqn:Ixydash}
+    I_{xy'} = \left(x_r-x'\right)\int_{m_1x'+c_1}^{m_2x'+c_2} \frac{1}{\left(\left(x_r-x'\right)^2+\left(y_r-y'\right)^2+\left(z_r-z'\right)^2\right)^\frac{3}{2}}\ dy' \text{.}
+\end{align}
+We now perform the substitution given by
+\begin{align}
+    \tan\left(u\right) = \frac{y_r-y'}{\sqrt{\left(x_r-x'\right)^2+\left(z_r-z'\right)^2}} \text{.}
+\end{align}
+Rearranging this substitution yields
+\begin{align}
+    y' = y_r - \tan\left(u\right)\sqrt{\left(x_r-x'\right)^2+\left(z_r-z'\right)^2} \text{,}
+\end{align}
+which can be differentiated giving
+\begin{align}\label{eqn:dydash}
+    dy' = -\sec^2\left(u\right)\sqrt{\left(x_r-x'\right)^2+\left(z_r-z'\right)^2}\ du \text{.}
+\end{align}
+Here, the square root term behaves as a constant since \(x'\), \(y'\), and \(z'\) are mutually independent and we are integrating only with respect to \(y'\). Additionally, we can rearrange for the term \(\left(y_r-y'\right)^2\), giving
+\begin{align}\label{eqn:yminusydashsquared}
+    \left(y_r-y'\right)^2 = \left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\tan^2\left(u\right) \text{.}
+\end{align}
+We now substitute Equations (\ref{eqn:dydash}) and (\ref{eqn:yminusydashsquared}) into Equation (\ref{eqn:Ixydash}) and simplify, giving
+\begin{align}
+    I_{xy'} = \left(x_r-x'\right)\int_{y'=m_1x'+c_1}^{y'=m_2x'+c_2} \frac{-\sec^2\left(u\right)\sqrt{\left(x_r-x'\right)^2+\left(z_r-z'\right)^2}}{\left(\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\left(1+\tan^2\left(u\right)\right)\right)^\frac{3}{2}}\ du \text{.}
+\end{align}
+Applying the trigonometric identity \(\sec^2\left(u\right) = 1+\tan^2\left(u\right)\) and further simplification gives
+\begin{align}
+    I_{xy'} &= \left(x_r-x'\right)\int_{y'=m_1x'+c_1}^{y'=m_2x'+c_2} \frac{-\sec^2\left(u\right)\sqrt{\left(x_r-x'\right)^2+\left(z_r-z'\right)^2}}{\sqrt{\left(x_r-x'\right)^2+\left(z_r-z'\right)^2}^3\left(\sec^2\left(u\right)\right)^\frac{3}{2}}\ du \\
+    &= \left(x_r-x'\right)\int_{y'=m_1x'+c_1}^{y'=m_2x'+c_2} \frac{-\sec^2\left(u\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)^2\sec^3\left(u\right)}\ du \\
+    &= \left(x_r-x'\right)\int_{y'=m_1x'+c_1}^{y'=m_2x'+c_2} \frac{-\cos\left(u\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)^2}\ du \text{.}
+\end{align}
+Since the square root term in Equation (\ref{eqn:dydash}) behaves as a constant, we can move the denominator outside the integral,
+\begin{align}
+    I_{xy'} &= -\frac{x_r-x'}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)^2}\int_{y'=m_1x'+c_1}^{y'=m_2x'+c_2} \cos\left(u\right)\ du \\
+    &= -\frac{x_r-x'}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)^2} \Big[\sin\left(u\right)\Big]_{y'=m_1x'+c_1}^{y'=m_2x'+c_2} \text{.}
+\end{align}
+Now we will convert from \(u\) back to \(y'\). Based on the initial definition for \(u\), we can use basic trigonometry to obtain
+\begin{align}
+    \sin\left(u\right) = \frac{y_r-y'}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-y'\right)^2+\left(z_r-z'\right)^2}} \text{.}
+\end{align}
+We can now substitute in the expression for \(\sin\left(u\right)\) and the limits for \(y'\), giving
+\begin{align}
+    I_{xy'} &= \frac{\left(x_r-x'\right)\left(y_r-m_1x'-c_1\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-m_1x'-c_1\right)^2+\left(z_r-z'\right)^2}} \nonumber \\
+    & -\frac{\left(x_r-x'\right)\left(y_r-m_2x'-c_2\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-m_2x'-c_2\right)^2+\left(z_r-z'\right)^2}} \text{.}
+\end{align}
+With the first integral for the \(x\)-field solved, the expression now becomes
+\begin{align}
+    &B_x = -\frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \int_{x'=x_1}^{x'=x_2} \nonumber \\
+    & - \frac{\left(x_r-x'\right)\left(y_r-m_1x'-c_1\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-m_1x'-c_1\right)^2+\left(z_r-z'\right)^2}} \nonumber \\
+    & \frac{\left(x_r-x'\right)\left(y_r-m_2x'-c_2\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-m_2x'-c_2\right)^2+\left(z_r-z'\right)^2}}\ dx' \text{.}
+\end{align}
+To solve this integral, we will consider the generalised integral
+\begin{align}
+    &I_{xx'} = \int_{x'=x_1}^{x'=x_2} \Bigg( \Bigg. \nonumber \\ 
+    &\Bigg. \frac{\left(x_r-x'\right)\left(y_r-mx'-c\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \Bigg) \ dx' \text{.}
+\end{align}
+Note that the numerator of this integrand is a quadratic. To solve this integral, we will split this integrand into two components. By doing this, we can remove any quadratic terms in the numerator. To begin this process, consider
+\begin{align}
+    &\left(x_r-x'\right)\left(y_r-mx'-c\right) = \left(x_r-x'\right)\left(mx_r-mx'+y_r-mx_r-c\right) \nonumber \\
+    &= m\left(x_r-x'\right)^2 + \left(x_r-x'\right)\left(y_r-mx_r-c\right) \nonumber \\
+    &= m\left(x_r-x'\right)^2 + m\left(z_r-z'\right)^2 + \left(x_r-x'\right)\left(y_r-mx_r-c\right) - m\left(z_r-z'\right)^2 \nonumber \\
+    &= m\left(\left(x_r-x'\right)^2 + \left(z_r-z'\right)^2\right) + \left(x_r-x'\right)\left(y_r-mx_r-c\right) - m\left(z_r-z'\right)^2 \nonumber \text{.}
+\end{align}
+While this appears more complicated, it will simplify the integration process. Substituting this into the expression for \(I_{xx'}\) gives
+\begin{align}
+    &I_{xx'} = \int_{x'=x_1}^{x'=x_2} \Bigg( \Bigg. \nonumber \\
+    & \Bigg. \frac{m\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \Bigg. \nonumber \\
+    & \Bigg. + \frac{\left(x_r-x'\right)\left(y_r-mx_r-c\right) - m\left(z_r-z'\right)^2}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \Bigg) dx' \text{.}
+\end{align}
+This can be rewritten as
+\begin{align}
+    &I_{xx'} = m\int_{x'=x_1}^{x'=x_2} \frac{1}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}}\ dx' \nonumber \\
+    & + \int_{x'=x_1}^{x'=x_2} \Bigg( \Bigg. \nonumber \\
+    & \Bigg. \frac{\left(x_r-x'\right)\left(y_r-mx_r-c\right) - m\left(z_r-z'\right)^2}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \Bigg) \ dx' \text{.}
+\end{align}
+We will solve each of these integrals separately, beginning with
+\begin{align}
+    I_{xx'1} = m\int_{x'=x_1}^{x'=x_2} \frac{1}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}}\ dx' \text{.}
+\end{align}
+Consider the substitution
+\begin{align}
+    u = \sqrt{1+m^2}&\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2} \nonumber \\
+    & + \left(1+m^2\right)x'-my_r-x_r+mc \text{.}
+\end{align}
+Upon differentiation, we obtain
+\begin{align}
+    du = \left(-\frac{\sqrt{1+m^2}\bigg(\left(x_r-x'\right)+m\left(y_r-mx'-c\right)\bigg)}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} + 1+m^2\right)\ dx' \text{.}
+\end{align}
+However, this can be manipulated to become
+\begin{align}
+    du =& \frac{\sqrt{1+m^2}}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \Bigg( \Bigg. \nonumber \\
+    & \Bigg. \sqrt{1+m^2}\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2} \Bigg. \nonumber \\
+    & \Bigg. + \left(1+m^2\right)x' - my_r - x_r + mc \Bigg)\ dx' \text{,}
+\end{align}
+which can be simplified to
+\begin{align}
+    du = \frac{\sqrt{1+m^2}}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}}\ u\ dx' \text{.}
+\end{align}
+Upon rearrangement to reflect our integral \(I_{xx'1}\), we can see that
+\begin{align}
+    \frac{1}{\sqrt{1+m^2}}\frac{1}{u} = \frac{1}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}}\ dx' \text{.}
+\end{align}
+Therefore, the integral can be rewritten as
+\begin{align}
+    I_{xx'1} = \frac{m}{\sqrt{1+m^2}} \int_{x'=x_1}^{x'=x_2} \frac{1}{u}\ du \text{.}
+\end{align}
+Solving, we get
+\begin{align}
+    I_{xx'1} = \frac{m}{\sqrt{1+m^2}} \Big[ \ln u \Big]_{x'=x_1}^{x'=x_2} \text{.}
+\end{align}
+Substituting the expression for \(u\) gives
+\begin{align}
+    I_{xx'1} &= \frac{m}{\sqrt{1+m^2}}\Big[ \Big. \nonumber \\
+    & \Big. \ln \big( \sqrt{1+m^2}\sqrt{\left(x_r-x'\right)^2 + \left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2} \nonumber \big. \Big. \\
+    & \Big. \big. + \left(1+m^2\right)x'-y_r-x_r+mc \big) \Big]_{x'=x_1}^{x'=x_2} \text{.}
+\end{align}
+Substituting the integration limits gives
+\begin{align}
+    I_{xx'1} &= \frac{m}{\sqrt{1+m^2}}\Big( \Big. \nonumber \\
+    & \Big. \ln \big( \sqrt{1+m^2}\sqrt{\left(x_r-x_2\right)^2 + \left(y_r-mx_2-c\right)^2+\left(z_r-z'\right)^2} \nonumber \big. \Big. \\
+    & \Big. \big. + \left(1+m^2\right)x_2-y_r-x_r+mc \big) \Big. \nonumber \\
+    & \Big. - \ln \big( \sqrt{1+m^2}\sqrt{\left(x_r-x_1\right)^2 + \left(y_r-mx_1-c\right)^2+\left(z_r-z'\right)^2} \nonumber \big. \Big. \\
+    & \Big. \big. + \left(1+m^2\right)x_1-y_r-x_r+mc \big) \Big) \nonumber
+\end{align}
+Now we may proceed with solving the second integral,
+\begin{align}
+    &I_{xx'2} = \int_{x'=x_1}^{x'=x_2} \Bigg( \Bigg. \nonumber \\
+    &\Bigg. \frac{\left(x_r-x'\right)\left(y_r-mx_r-c\right)-m\left(z_r-z'\right)^2}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \Bigg) \ dx' \text{.}
+\end{align}
+We begin this derivation with the substitutions
+\begin{align}
+    u^+ &= \sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}+y_r-mx'-c \text{, and} \nonumber \\
+    u^- &= \sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}-y_r+mx'+c \text{.} \nonumber
+\end{align}
+Upon differentiation, we get
+\begin{align}
+    \frac{du^+}{dx'} &= -m-\frac{x_r-x'+my_r-m^2x'-mc}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \nonumber \\
+    \implies \frac{du^+}{dx'} &= \frac{-mu^+ - x_r+x'}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \text{.}
+\end{align}
+Similarly,
+\begin{align}
+    \frac{du^-}{dx'} &= m - \frac{x_r-x'+my_r-m^2x'-mc}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \nonumber \\
+    \implies \frac{du^-}{dx'} &= \frac{mu^- - x_r + x'}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \text{.}
+\end{align}
+Now we combine the \(u^+\) and \(u^-\) terms into a single term,
+\begin{align}
+    u = \frac{u^-}{u^+} \text{,}
+\end{align}
+which, when differentiated, gives
+\begin{align}
+    \frac{du}{dx'} = \frac{\frac{du^-}{dx'}u^+ - \frac{du^+}{dx'}u^-}{\left(u^+\right)^2} \text{.}
+\end{align}
+Simplifying,
+\begin{align}
+    \frac{du}{dx'} &= \frac{\frac{mu^+u^- - \left(x_r-x'\right)u^+}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}}-\frac{-mu^-u^+-\left(x_r-x'\right)u^-}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}}}{\left(u^+\right)^2} \nonumber \\
+    &= \frac{2mu^+u^- + \left(u^--u^+\right)\left(x_r-x'\right)}{\left(u^+\right)^2\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \text{.}
+\end{align}
+For clarity, we define
+\begin{align}
+    R = \sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2} \text{.} \nonumber
+\end{align}
+The \(u^+u^-\) and \(u^--u^+\) terms can be simplified, giving
+\begin{align}
+    u^+u^- &= \left(R+y_r-mx'-c\right)\left(R-y_r+mx'+c\right) \nonumber \\
+    &= R^2 - \left(y_r-mx'-c\right)^2 \nonumber \\
+    &= \left(x_r-x'\right)^2 + \left(z_r-z'\right)^2 \text{, and} \nonumber \\
+    u^--u^+ &= R - y_r-mx'-c - R - y_r-mx'-c \nonumber \\
+    &= -2\left(y_r-mx'-c\right) \text{.} \nonumber
+\end{align}
+Therefore,
+\begin{align}
+    \frac{du}{dx'} = \frac{2m\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)-2\left(y_r-mx'-c\right)\left(x_r-x'\right)}{\left(u^+\right)^2\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \text{.}
+\end{align}
+Dividing both sides by \(u\) gives
+\begin{align}
+    \frac{1}{u}\frac{du}{dx'} = -2\frac{\left(y_r-mx'-c\right)\left(x_r-x'\right)-m\left(x_r-x'\right)^2-m\left(z_r-z'\right)^2}{\left(u^+\right)^2\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \left(\frac{u^+}{u^-}\right) \text{.}
+\end{align}
+Cancelling the \(u^+\) terms leads to
+\begin{align}
+    -\frac{1}{2}\frac{1}{u}\frac{du}{dx'} = \frac{\left(y_r-mx'-c\right)\left(x_r-x'\right) - m\left(x_r-x'\right)^2 - m\left(z_r-z'\right)^2}{u^+u^-\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \text{.}
+\end{align}
+Substituting the \(u^+u^-\) term gives
+\begin{align}
+    -\frac{1}{2}\frac{1}{u}&\frac{du}{dx'} = \nonumber \\
+    &\frac{\left(y_r-mx'-c\right)\left(x_r-x'\right) - m\left(x_r-x'\right)^2 - m\left(z_r-z'\right)^2}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \text{.}
+\end{align}
+Factoring the numerator gives
+\begin{align}
+    -\frac{1}{2}&\frac{1}{u}\frac{du}{dx'} = \nonumber \\
+    &\frac{\left(x_r-x'\right)\left(y_r-mx'-c-mx_r+mx'\right) - m\left(z_r-z'\right)^2}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \nonumber
+\end{align}
+Thus,
+\begin{align}
+    -\frac{1}{2}&\frac{1}{u}\frac{du}{dx'} = \nonumber \\
+    &\frac{\left(x_r-x'\right)\left(y_r-mx_r-c\right) - m\left(z_r-z'\right)^2}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}}
+\end{align}
+Note that the right hand side of this equation is equal to the integrand of \(I_{xx'2}\). Thus,
+\begin{align}
+    I_{xx'2} &= -\frac{1}{2} \int_{x'=x_1}^{x'=x_2} \frac{1}{u} \frac{du}{dx'}\ dx' \nonumber \\
+    &= -\frac{1}{2} \int_{x'=x_1}^{x'=x_2} \frac{1}{u}\ du \text{.}
+\end{align}
+Solving this integral gives
+\begin{align}
+    I_{xx'2} &= \Big[ -\frac{1}{2} \ln\left(u\right) \Big]_{x'=x_1}^{x'=x_2} \nonumber \\
+    &= -\frac{1}{2} \Big[ \ln\left( \frac{u^-}{u^+} \right) \Big]_{x'=x_1}^{x'=x_2} \nonumber \\
+    &= -\frac{1}{2} \Bigg[ \ln\Bigg( \Bigg. \Bigg. \nonumber \\
+    & \Bigg. \Bigg. \frac{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}-y_r+mx'+c}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}+y_r-mx'-c} \Bigg)\Bigg]_{x'=x_1}^{x'=x_2} \nonumber
+\end{align}
+Multiplying the argument of the logarithm by
+\begin{align}
+    \frac{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}-y_r+mx'+c}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}-y_r+mx'+c}
+\end{align}
+leads to
+\begin{align}
+    &I_{xx'2} = -\frac{1}{2} \Bigg[ \ln \Bigg( \Bigg. \Bigg. \nonumber \\
+    & \Bigg. \Bigg. \frac{\left(\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}-y_r+mx'+c\right)^2}{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2-\left(y_r-mx'-c\right)^2} \Bigg)\Bigg]_{x'=x_1}^{x'=x_2} \text{.}
+\end{align}
+Using logarithm laws gives
+\begin{align}
+    &I_{xx'2} = -\Bigg[ \ln \Bigg( \Bigg. \Bigg. \nonumber \\
+    & \Bigg. \Bigg. \frac{\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}-y_r+mx'+c}{\sqrt{\left(x_r-x'\right)^2+\left(z_r-z'\right)^2}} \Bigg)\Bigg]_{x'=x_1}^{x'=x_2} \text{.}
+\end{align}
+Susbtituting the integration limits gives
+\begin{align}
+    I_{xx'2} &= -\ln\left(\frac{\sqrt{\left(x_r-x_2\right)^2+\left(y_r-mx_2-c\right)^2+\left(z_r-z'\right)^2}-y_r+mx_2+c}{\sqrt{\left(x_r-x_2\right)^2+\left(z_r-z'\right)^2}}\right) \nonumber \\
+    & + \ln\left(\frac{\sqrt{\left(x_r-x_1\right)^2+\left(y_r-mx_1-c\right)^2+\left(z_r-z'\right)^2}-y_r+mx_1+c}{\sqrt{\left(x_r-x_1\right)^2+\left(z_r-z'\right)^2}}\right) \text{.}
+\end{align}
+With solutions for \(I_{xx'1}\) and \(I_{xx'2}\), we can now obtain the \(x\)-field,
+\begin{align}
+    B_x = -\frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \left( \left. I_{xx'1} \right|_{m=m_2,c=c_2} - \left. I_{xx'1} \right|_{m=m_1,c=c_1} \right. \nonumber \\
+    \left. + \left. I_{xx'2} \right|_{m=m_2,c=c_2} - \left. I_{xx'2} \right|_{m=m_1,c=c_1} \right) \text{.}
+\end{align}
+\newpage
+This yields the field given by
+\begin{align}
+    &B_x = \frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi}\Bigg( -\frac{m_2}{\sqrt{1+m_2^2}}\Big( \Big. \Bigg. \nonumber \\
+    & \Bigg.\Big. \ln \big( \sqrt{1+m_2^2}\sqrt{\left(x_r-x_2\right)^2 + \left(y_r-m_2x_2-c_2\right)^2+\left(z_r-z'\right)^2} \nonumber \big. \Big. \Bigg. \\
+    & \Bigg. \Big. \big. + \left(1+m_2^2\right)x_2-y_r-x_r+m_2c_2 \big) \Big. \Bigg. \nonumber \\
+    & \Bigg. \Big. - \ln \big( \sqrt{1+m_2^2}\sqrt{\left(x_r-x_1\right)^2 + \left(y_r-m_2x_1-c_2\right)^2+\left(z_r-z'\right)^2} \nonumber \big. \Big. \Bigg. \\
+    & \Bigg. \Big. \big. + \left(1+m_2^2\right)x_1-y_r-x_r+m_2c_2 \big) \Big) \Bigg. \nonumber \\
+    \Bigg. &+ \frac{m_1}{\sqrt{1+m_1^2}}\Big( \Big. \nonumber \\
+    & \Big. \ln \big( \sqrt{1+m_1^2}\sqrt{\left(x_r-x_2\right)^2 + \left(y_r-m_1x_2-c_1\right)^2+\left(z_r-z'\right)^2} \nonumber \big. \Big. \\
+    & \Big. \big. + \left(1+m_1^2\right)x_2-y_r-x_r+m_1c_1 \big) \Big. \nonumber \\
+    & \Big. - \ln \big( \sqrt{1+m_1^2}\sqrt{\left(x_r-x_1\right)^2 + \left(y_r-m_1x_1-c_1\right)^2+\left(z_r-z'\right)^2} \nonumber \big. \Big. \\
+    & \Big. \big. + \left(1+m_1^2\right)x_1-y_r-x_r+m_1c_1 \big) \Big) \Bigg. \nonumber \\
+    \Bigg. &+ \ln\left(\frac{\sqrt{\left(x_r-x_2\right)^2+\left(y_r-m_2x_2-c_2\right)^2+\left(z_r-z'\right)^2}-y_r+m_2x_2+c_2}{\sqrt{\left(x_r-x_2\right)^2+\left(z_r-z'\right)^2}}\right) \nonumber \\
+    & - \ln\left(\frac{\sqrt{\left(x_r-x_1\right)^2+\left(y_r-m_2x_1-c_2\right)^2+\left(z_r-z'\right)^2}-y_r+m_2x_1+c_2}{\sqrt{\left(x_r-x_1\right)^2+\left(z_r-z'\right)^2}}\right) \Bigg. \nonumber \\
+    \Bigg. & - \ln\left(\frac{\sqrt{\left(x_r-x_2\right)^2+\left(y_r-m_1x_2-c_1\right)^2+\left(z_r-z'\right)^2}-y_r+m_1x_2+c_1}{\sqrt{\left(x_r-x_2\right)^2+\left(z_r-z'\right)^2}}\right) \nonumber \\
+    & + \ln\left(\frac{\sqrt{\left(x_r-x_1\right)^2+\left(y_r-m_1x_1-c_1\right)^2+\left(z_r-z'\right)^2}-y_r+m_1x_1+c_1}{\sqrt{\left(x_r-x_1\right)^2+\left(z_r-z'\right)^2}}\right) \Bigg) \text{.}
+\end{align}
+
+\vspace{2cm}
+
+\noindent Note here that the denominators of the arguments of the last four logarithms cancel due to logarithm laws. In addition, by defining
+\begin{align}
+    X &= x_q - x_r \nonumber \\
+    Y &= c_p + m_px_q - y_r \nonumber \\
+    Z &= z' - z_r \nonumber \\
+    R_{pq} &= \sqrt{X^2 + Y^2 + Z^2} \nonumber \\
+    S_{\!pq} &= X + m_pY + \sqrt{1+m_p^2}R_{pq} \nonumber \\
+    T_{pq} &= R_{pq} + Y \nonumber \text{,}
+\end{align}
+the equation for \(B_x\) simplifies to
+\begin{align}
+    B_x = \frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \sum_{p=1}^2 \sum_{q=1}^2 \left[ \left(-1\right)^{p+q} \left( \ln \left(T_{pq} \right) - \frac{m_p}{\sqrt{1+m_p^2}} \ln \left( S_{pq} \right) \right) \right] \text{.}
+\end{align}
+
+\newpage
+\section{Second component of the field equations}
+To continue, we define the integral for \(B_y\),
+\begin{align}
+    B_y = \frac{\mu_0 \mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \int_{x_1}^{x_2} \int_{m_1x'+c_1}^{m_2x'+c_2} \frac{y_r-y'}{\left(\left(x_r-x'\right)^2+\left(y_r-y'\right)^2+\left(z_r-z'\right)^2\right)^\frac{3}{2}}\ dy' dx' \text{.}
+\end{align}
+For this integral, we use the substitution
+\begin{align}
+    u = \left(x_r-x'\right)^2+\left(y_r-y'\right)^2+\left(z_r-z'\right)^2 \text{,}
+\end{align}
+implying
+\begin{align}
+    du = -2\left(y_r-y'\right)\ dy' \text{.}
+\end{align}
+These can be substituted into our integral, giving
+\begin{align}
+    B_y = \frac{\mu_0 \mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \int_{x_1}^{x_2} \int_{m_1x'+c_1}^{m_2x'+c_2} -\frac{1}{2} u^{-\frac{3}{2}} \ du\ dx' \text{.}
+\end{align}
+Evaluating the inner integral gives
+\begin{align}
+    B_y &= \frac{\mu_0 \mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \int_{x_1}^{x_2} \bigg[ u^{-\frac{1}{2}} \bigg]_{y'=m_1x'+c_1}^{y'=m_2x'+c_2}\ dx' \nonumber \\
+    &= \frac{\mu_0 \mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \int_{x_1}^{x_2} \bigg[ \frac{1}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-y'\right)^2+\left(z_r-z'\right)^2}} \bigg]_{y'=m_1x'+c_1}^{y'=m_2x'+c_2}\ dx' \text{.}
+\end{align}
+Upon substitution for \(y'\), we get
+\begin{align}
+    B_y = \frac{\mu_0 \mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} &\int_{x_1}^{x_2} \frac{1}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-m_2x'-c_2\right)^2+\left(z_r-z'\right)^2}}\ dx' \nonumber \\
+    & - \int_{x_1}^{x_2} \frac{1}{\sqrt{\left(x_r-x'\right)^2+\left(y_r-m_1x'-c_1\right)^2+\left(z_r-z'\right)^2}}\ dx' \text{.}
+\end{align}
+These integrals are extremely similar to the integral for \(I_{xx'1}\). Thus, the \(y\)-field may be rewritten as
+\begin{align}
+    B_y = \frac{\mu_0 \mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \left( \left. \frac{I_{xx'1}}{m} \right|_{m=m_2,c=c_2} - \left. \frac{I_{xx'1}}{m} \right|_{m=m_1,c=c_1} \right) \text{.}
+\end{align}
+Upon substitution and simplification, we get
+\begin{align}
+    B_y = \frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \sum_{p=1}^2 \sum_{q=1}^2 \left[ \left(-1\right)^{p+q} \frac{1}{\sqrt{1+m_p^2}} \ln \left(S_{pq} \right) \right] \text{.}
+\end{align}
+
+\newpage
+\section{Third component of the field equations}
+Finally, the \(z\)-field is given by
+\begin{align}
+    B_z = \frac{\mu_0 \mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \int_{x_1}^{x_2} \int_{m_1x'+c_1}^{m_2x'+c_2} \frac{z_r-z'}{\left(\left(x_r-x'\right)^2+\left(y_r-y'\right)^2+\left(z_r-z'\right)^2\right)^\frac{3}{2}}\ dy' dx' \text{.}
+\end{align}
+The numerator is constant with respect to the integration variables, and can be moved outside the inner integral,
+\begin{align}
+    B_z = \frac{\mu_0 \mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \int_{x_1}^{x_2} &\left(z_r-z'\right) \int_{m_1x'+c_1}^{m_2x'+c_2} \Bigg( \Bigg. \nonumber \\
+    &\Bigg. \frac{1}{\left(\left(x_r-x'\right)^2+\left(y_r-y'\right)^2+\left(z_r-z'\right)^2\right)^\frac{3}{2}} \Bigg) dy'\ dx' \text{.}
+\end{align}
+Here, the inner integral is a similar integral to that found in the expression for \(I_{xy'}\). By applying this solution but using \(z_r-z'\) instead of \(x_r-x'\), we get
+\begin{align}
+    B_z &= \frac{\mu_0 \mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \int_{x_1}^{x_2} \Bigg( \Bigg. \nonumber \\
+    \Bigg. & -\frac{\left(z_r-z'\right)\left(y_r-m_2x'-c_2\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-m_2x'-c_2\right)^2+\left(z_r-z'\right)^2}} \Bigg. \nonumber \\
+    & \Bigg. + \frac{\left(z_r-z'\right)\left(y_r-m_1x'-c_1\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-m_1x'-c_1\right)^2+\left(z_r-z'\right)^2}} \Bigg. \nonumber \\
+    & \Bigg. \Bigg) dx' \text{.}
+\end{align}
+To solve this, we will consider the generalised integral
+\begin{align}
+    I_z &= \int_{x'=x_1}^{x'=x_2} \Bigg( \Bigg. \nonumber \\
+    &\Bigg. \frac{\left(z_r-z'\right)\left(y_r-mx'-c\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \Bigg. \nonumber \\
+    & \Bigg. \Bigg) dx' \text{.}
+\end{align}
+To solve this integral we will consider the substitutions
+\begin{align}
+    u_n &= m\left(x_r-x'\right)^2+m\left(z_r-z'\right)^2-\left(x_r-x'\right)\left(y_r-mx'-c\right) \text{, and} \nonumber \\
+    u_d &= \left(z_r-z'\right)R \text{,}
+\end{align}
+where
+\begin{align}
+    R = \sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2} \text{,}
+\end{align}
+and define
+\begin{align}
+    U = \frac{u_n}{u_d} \text{.}
+\end{align}
+We will note here that
+\begin{align}\label{eqn:udsq}
+    u_d^2 = \left(z_r-z'\right)^2R^2 \text{, and}
+\end{align}
+\begin{align}
+    u_n^2+u_d^2 = &\left(m\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)-\left(x_r-x'\right)\left(y_r-mx'-c\right)\right)^2 \nonumber \\
+    &+\left(z_r-z'\right)^2R^2 \text{.}
+\end{align}
+By using the fact that
+\begin{align}
+    \left(x_r-x'\right)^2+\left(z_r-z'\right)^2 = R^2 - \left(y_r-mx'-c\right)^2 \text{,}
+\end{align}
+we obtain
+\begin{align}
+    u_n^2+u_d^2 = &\left(mR^2 - m\left(y_r-mx'-c\right)^2 - \left(x_r-x'\right)\left(y_r-mx'-c\right)\right)^2 \nonumber \\
+    &+\left(z_r-z'\right)^2R^2 \text{.} \nonumber
+\end{align}
+Thus,
+\begin{align}
+    u_n^2+u_d^2 = &\left(mR^2 - \left(y_r-mx'-c\right)\left(x_r-x'+m\left(y_r-mx'-c\right)\right)\right)^2 \nonumber \\
+    &+\left(z_r-z'\right)^2R^2 \text{.} \nonumber
+\end{align}
+Expansion and factorisation leads to
+\begin{align}
+    u_n^2+u_d^2 &= m^2R^4 - 2mR^2\left(y_r-mx'-c\right)\left(x_r-x'+m\left(y_r-mx'-c\right)\right) \nonumber \\
+    & + \left(y_r-mx'-c\right)^2\left(x_r-x'+m\left(y_r-mx'-c\right)\right)^2 + \left(z_r-z'\right)^2R^2 \text{.}
+\end{align}
+With further expansion and factorisation, we obtain
+\begin{align}
+    u_n^2+u_d^2 = &\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\Bigg( \Bigg. \nonumber \\
+    &\Bigg. R^2\left(1+m^2\right)-\left(x_r-x'+m\left(y_r-mx'-c\right)\right)^2\Bigg) \text{.}
+\end{align}
+Therefore,
+\begin{align}\label{eqn:unsqplusudsq}
+    R^2\left(1+m^2\right)-\left(x_r-x'+m\left(y_r-mx'-c\right)\right)^2 = \frac{u_n^2+u_d^2}{\left(x_r-x'\right)^2+\left(z_r-z'\right)^2} \text{,}
+\end{align}
+which will come into use later. Upon differentiation and simplification of \(u_n\) and \(u_d\),
+\begin{align}
+    \frac{du_n}{dx'} &= y_r - mx' - c - m\left(x_r-x'\right) \text{, and} \nonumber \\
+    \frac{du_d}{dx'} &= -\frac{\left(z_r-z'\right)\left(x_r-x' + m\left(y_r-mx'-c\right)\right)}{R} \text{.}
+\end{align}
+Using the quotient rule,
+\begin{align}
+    \frac{dU}{dx'} = \frac{u_d\frac{du_n}{dx'} - u_n\frac{du_d}{dx'}}{\left(u_d\right)^2} \text{.}
+\end{align}
+Substituting in expressions,
+\begin{align}
+    &\frac{dU}{dx'} = \frac{z_r-z'}{R^2\left(z_r-z'\right)^2} \bigg(  \left(y_r-mx'-c-m\left(x_r-x'\right)\right)R \bigg. \nonumber \\
+    & \bigg. +\frac{1}{R} \left( x_r - x' + m\left(y_r-mx'-c\right)\right)\bigg. \nonumber \\
+    & \bigg. \left(m\left(\left(x_r-x'\right)^2 + \left(z_r-z'\right)^2\right) - \left(x_r-x'\right)\left(y_r-mx'-c\right)\right) \bigg) \text{.}
+\end{align}
+By using the relationship
+\begin{align}
+    \left(x_r-x'\right)^2+\left(z_r-z'\right)^2 = R^2 - \left(y_r-mx'-c\right)^2 \text{,}
+\end{align}
+further manipulation leads to
+\begin{align}
+    \frac{dU}{dx'} = \frac{1}{R^3\left(z_r-z'\right)} &\bigg( \left(y_r-mx'-c-m\left(x_r-x'\right)\right)R^2 \bigg. \nonumber \\
+    & \bigg. + \left( x_r - x' + m\left(y_r-mx'-c\right)\right)\big( \big. \bigg. \nonumber \\
+    & \bigg. \big. mR^2 - m\left(y_r-mx'-c\right)^2 - \left(x_r-x'\right)\left(y_r-mx'-c\right)\big) \bigg) \text{.}
+\end{align}
+By taking \(\left(y_r-mx'-c\right)\) as a common factor in the last section of the equation, we obtain
+\begin{align}
+    \frac{dU}{dx'} = \frac{1}{R^3\left(z_r-z'\right)} &\bigg( \left(y_r-mx'-c-m\left(x_r-x'\right)\right)R^2 \bigg. \nonumber \\
+    & \bigg. + \left( x_r - x' + m\left(y_r-mx'-c\right)\right)\big( \big. \bigg. \nonumber \\
+    & \bigg. \big. mR^2 - \left(y_r-mx'-c\right)\left(x_r-x'+m\left(y_r-mx'-c\right)\right)\big) \bigg) \text{.}
+\end{align}
+By manipulating the expression on the right side of the equation, we obtain
+\begin{align}
+    &dU = dx'\ \Bigg( \Bigg. \nonumber \\
+    & \Bigg. \frac{\left(y_r-mx'-c\right)\left(1+m^2\right)R^2-\left(y_r-mx'-c\right)\left(x_r-x'+m\left(y_r-mx'-c\right)\right)^2}{\left(z_r-z'\right)R^3} \Bigg) \text{.}
+\end{align}
+By taking \(\left(y_r-mx'-c\right)\) as a common factor, we get
+\begin{align}
+    dU = &\frac{\left(y_r-mx'-c\right)\left(z_r-z'\right)}{R} \frac{1}{\left(z_r-z'\right)^2R^2} \bigg( \bigg. \nonumber \\
+    & \bigg. \left(1+m^2\right)R^2-\left(x_r-x'+m\left(y_r-mx'-c\right)\right)^2 \bigg)\ dx' \text{.}
+\end{align}
+Here, we can substitute Equations (\ref{eqn:udsq}) and (\ref{eqn:unsqplusudsq}), giving
+\begin{align}
+    dU = \frac{\left(y_r-mx'-c\right)\left(z_r-z'\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)R} \left(\frac{u_n^2+u_d^2}{u_d^2}\right)\ dx' \text{.}
+\end{align}
+Rearranging and substituting the expression for \(R\) gives
+\begin{align}
+    &\frac{u_d^2}{u_n^2+u_d^2}\ dU = dx' \Bigg( \Bigg. \nonumber \\
+    & \Bigg. \frac{\left(y_r-mx'-c\right)\left(z_r-z'\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \Bigg) \text{.}
+\end{align}
+Manipulating the left side of the equation gives
+\begin{align}
+    \frac{u_d^2}{u_n^2+u_d^2} \times \frac{\frac{1}{u_d^2}}{\frac{1}{u_d^2}}\ dU = \frac{1}{1+\left(\frac{u_n}{u_d}\right)^2}\ dU = \frac{1}{1+U^2}\ dU \text{.}
+\end{align}
+Thus,
+\begin{align}
+    &\frac{1}{1+U^2}\ dU = dx' \Bigg( \Bigg. \nonumber \\
+    &\Bigg. \frac{\left(y_r-mx'-c\right)\left(z_r-z'\right)}{\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \Bigg) \text{.}
+\end{align}
+Notice here that the right hand side is our integrand in the expression for \(I_z\). Thus, we can rewrite the integral as
+\begin{align}
+    I_z = \int_{x'=x_1}^{x'=x_2} \frac{1}{1+U^2}\ dU \text{.}
+\end{align}
+It is well known that
+\begin{align}
+    \int \frac{1}{1+U^2}\ dU = \arctan \left(U\right) + C \text{,}
+\end{align}
+where \(C\) is an integration constant. Therefore,
+\begin{align}
+    I_z = \bigg[ \arctan \left(U\right) \bigg]_{x'=x_1}^{x'=x_2} \text{.}
+\end{align}
+Substituting for \(U\) gives
+\begin{align}
+    I_z = &\Bigg[ \arctan \Bigg( \Bigg. \Bigg. \nonumber \\
+    & \Bigg. \Bigg. \frac{m\left(\left(x_r-x'\right)^2+\left(z_r-z'\right)^2\right)-\left(x_r-x'\right)\left(y_r-mx'-c\right)}{\left(z_r-z'\right)\sqrt{\left(x_r-x'\right)^2+\left(y_r-mx'-c\right)^2+\left(z_r-z'\right)^2}} \Bigg) \Bigg]_{x'=x_1}^{x'=x_2} \text{.}
+\end{align}
+By applying the integration limits,
+\begin{align}
+    I_z =& \arctan \left( \frac{m\left(\left(x_r-x_2\right)^2+\left(z_r-z'\right)^2\right)-\left(x_r-x_2\right)\left(y_r-mx_2-c\right)}{\left(z_r-z'\right)\sqrt{\left(x_r-x_2\right)^2+\left(y_r-mx_2-c\right)^2+\left(z_r-z'\right)^2}} \right) \nonumber \\
+    & - \arctan \left( \frac{m\left(\left(x_r-x_1\right)^2+\left(z_r-z'\right)^2\right)-\left(x_r-x_1\right)\left(y_r-mx_1-c\right)}{\left(z_r-z'\right)\sqrt{\left(x_r-x_1\right)^2+\left(y_r-mx_1-c\right)^2+\left(z_r-z'\right)^2}} \right) \text{.}
+\end{align}
+This can be substituted into the expression for \(B_z\), giving
+\begin{align}
+    B_z = \frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \left( -\left. I_z \right|_{m=m_2,c=c_2} + \left. I_z \right|_{m=m_1,c=c_1} \right) \text{.}
+\end{align}
+Finally, we can state
+\begin{align}
+    &B_z = \frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \Bigg( \Bigg. \nonumber \\
+    & \Bigg. -\arctan \left( \frac{m_2\left(\left(x_r-x_2\right)^2+\left(z_r-z'\right)^2\right)-\left(x_r-x_2\right)\left(y_r-m_2x_2-c_2\right)}{\left(z_r-z'\right)\sqrt{\left(x_r-x_2\right)^2+\left(y_r-m_2x_2-c_2\right)^2+\left(z_r-z'\right)^2}} \right) \Bigg. \nonumber \\
+    & \Bigg. +\arctan \left( \frac{m_2\left(\left(x_r-x_1\right)^2+\left(z_r-z'\right)^2\right)-\left(x_r-x_1\right)\left(y_r-m_2x_1-c_2\right)}{\left(z_r-z'\right)\sqrt{\left(x_r-x_1\right)^2+\left(y_r-m_2x_1-c_2\right)^2+\left(z_r-z'\right)^2}} \right) \Bigg. \nonumber \\
+    & \Bigg. +\arctan \left( \frac{m_1\left(\left(x_r-x_2\right)^2+\left(z_r-z'\right)^2\right)-\left(x_r-x_2\right)\left(y_r-m_1x_2-c\right)}{\left(z_r-z'\right)\sqrt{\left(x_r-x_2\right)^2+\left(y_r-m_1x_2-c_1\right)^2+\left(z_r-z'\right)^2}} \right) \Bigg. \nonumber \\
+    & \Bigg. -\arctan \left( \frac{m_1\left(\left(x_r-x_1\right)^2+\left(z_r-z'\right)^2\right)-\left(x_r-x_1\right)\left(y_r-m_1x_1-c_1\right)}{\left(z_r-z'\right)\sqrt{\left(x_r-x_1\right)^2+\left(y_r-m_1x_1-c_1\right)^2+\left(z_r-z'\right)^2}} \right) \Bigg) \text{.}
+\end{align}
+By defining
+\begin{align}
+    U_{pq} = \frac{m_p\left(X^2+Z^2\right)-XY}{ZR_{pq}} \text{,}
+\end{align}
+the expression for \(B_z\) is simplified greatly,
+\begin{align}
+    B_z = \frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \sum_{p=1}^2 \sum_{q=1}^2 \left[ \left(-1\right)^{p+q} \arctan \left(U_{pq}\right) \right] \text{.}
+\end{align}
+
+\section{Summary of field equations}
+To compactly express the solutions for the field components of this derivation, we define
+\begin{align}
+    X &= x_q-x_r \nonumber \\
+    Y &= c_p + m_px_q - y_r \nonumber \\
+    Z &= z'-z_r \nonumber \\
+    R_{pq} &= \sqrt{X^2+Y^2+Z^2} \nonumber \\
+    S_{pq} &= X+m_pY+\sqrt{1+m_p^2}R_{pq} \nonumber \\
+    T_{pq} &= R_{pq}+Y \nonumber \\
+    U_{pq} &= \frac{m_p\left(X^2+Z^2\right)-XY}{ZR_{pq}} \nonumber \text{,}
+\end{align}
+which then gives
+\begin{align}
+    B_x &= \frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \sum_{p=1}^2 \sum_{q=1}^2 \left[ \left(-1\right)^{p+q} \left( \ln \left(T_{pq} \right) - \frac{m_p}{\sqrt{1+m_p^2}} \ln \left( S_{pq} \right) \right) \right] \text{,} \\
+    B_y &= \frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \sum_{p=1}^2 \sum_{q=1}^2 \left[ \left(-1\right)^{p+q} \frac{1}{\sqrt{1+m_p^2}} \ln \left(S_{pq} \right) \right] \text{, and} \\
+    B_z &= \frac{\mu_0\mathbf{M}\cdot\hat{\mathbf{n}}}{4\pi} \sum_{p=1}^2 \sum_{q=1}^2 \left[ \left(-1\right)^{p+q} \arctan \left(U_{pq}\right) \right] \text{.}
+\end{align}

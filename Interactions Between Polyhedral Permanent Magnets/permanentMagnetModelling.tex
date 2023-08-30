@@ -1,0 +1,414 @@
+Introductory text about modelling permanent magnets.
+
+\section{Background}
+
+\subsection{Maxwell's equations}
+
+\subsection{Magnetic scalar and vector potential}
+The magnetic scalar and vector potentials are two useful tools derived directly from Maxwell's equations. The magnetic scalar potential \(\varphi\) originates from imposing a current-free assumption on Amp\'ere's Law, given by
+\begin{equation}
+    \nabla \times \mathbf{H} = \mathbf{J}_f + \frac{\partial \mathbf{D}}{\partial t} \text{,}
+\end{equation}
+where \(\mathbf{J}_f\) is the free current and \(\mathbf{D}\) is the electric displacement field. For static permanent magnets, no free current is present and derivatives with respect to time become zero, and thus
+\begin{equation}
+    \nabla \times \mathbf{H} = \mathbf{0} \text{.}
+\end{equation}
+Therefore, the \(\mathbf{H}\)-field is irrotational and can be written as the gradient of a scalar potential field \(\varphi\),
+\begin{equation}
+    \mathbf{H} = \nabla \varphi \text{.}
+\end{equation}
+This is called the magnetic scalar potential, and if solved, can be used to calculate the \(\mathbf{H}\)-field.
+
+An alternative to the magnetic scalar potential is the magnetic vector potential \(\mathbf{A}\), which is derived from Gauss' Law for Magnetism,
+\begin{equation}
+    \nabla \cdot \mathbf{B} = 0 \text{.}
+\end{equation}
+Since the \(\mathbf{B}\)-field is solenoidal, it can be written as the curl of a vector field \(\mathbf{A}\),
+\begin{equation}
+    \mathbf{B} = \nabla \times \mathbf{A} \text{.}
+\end{equation}
+\(\mathbf{A}\) is defined as the magnetic vector potential and can be used to find the \(\mathbf{B}\)-field in the same way the scalar potential can be used to find the \(\mathbf{H}\)-field.
+
+\subsection{Energy, forces, and torques}
+
+\section{Numerical techniques}
+
+\subsection{Finite difference method}
+
+\begin{figure}
+    \centering
+    %\includegraphics{}
+    \vspace{5cm}
+    \caption{A finite difference grid}
+    \label{fig:FDMgrid}
+\end{figure}
+
+\subsection{Finite element method}
+The finite element method (FEM) is a commonly used methodology to simulate electromagnetic systems due to its versatility and commercial availability.
+
+For three-dimensional FEM, the domain to be solved is often discretised into a large number of tetrahedral volume elements, each of which may be linear, quadratic, or higher order. This analysis will explore linear elements, but can be readily extended to quadratic or higher order elements using the same technique.
+
+\subsubsection*{Potentials inside an element}
+\begin{figure}
+    \centering
+    %\includegraphics{}
+    \vspace{5cm}
+    \caption{A linear tetrahedral volume element}
+    \label{fig:tetElement}
+\end{figure}
+Consider the linear element shown in Figure \ref{fig:tetElement}, with nodes placed at each of the four vertices of the element. The magnetic scalar potential \(\varphi\) at any point in the element may be given by a linear function of position,
+\begin{equation}\label{eqn:femLinEq}
+    \varphi\left(x,y,z\right) = a + bx + cy + dz = \begin{bmatrix} 1 & x & y & z \end{bmatrix} \begin{bmatrix} a \\ b \\ c \\ d \end{bmatrix} \text{.}
+\end{equation}
+Therefore, the magnetic scalar potential at each of the nodes \(\varphi_k\), where \(k = 1,\dots,4\) can be given by the matrix equation
+\begin{equation}
+    \begin{bmatrix} \varphi_1 \\ \varphi_2 \\ \varphi_3 \\ \varphi_4 \end{bmatrix} = \begin{bmatrix} 1 & x_1 & y_1 & z_1 \\ 1 & x_2 & y_2 & z_2 \\ 1 & x_3 & y_3 & z_3 \\ 1 & x_4 & y_4 & z_4 \end{bmatrix} \begin{bmatrix} a \\ b \\ c \\ d \end{bmatrix} \text{,}
+\end{equation}
+where \(\left(x_k,y_k,z_k\right)\) are the coordinates of node \(k\). If the four vertices form a volume, then a matrix inversion can be performed to find an expression for \(a\), \(b\), \(c\), and \(d\),
+\begin{equation}
+    \begin{bmatrix} a \\ b \\ c \\ d \end{bmatrix} = \begin{bmatrix} 1 & x_1 & y_1 & z_1 \\ 1 & x_2 & y_2 & z_2 \\ 1 & x_3 & y_3 & z_3 \\ 1 & x_4 & y_4 & z_4 \end{bmatrix}^{-1} \begin{bmatrix} \varphi_1 \\ \varphi_2 \\ \varphi_3 \\ \varphi_4 \end{bmatrix} \text{,}
+\end{equation}
+which can be substituted into Equation (\ref{eqn:femLinEq}), giving
+\begin{equation}
+    \varphi\left(x,y,z\right) = \begin{bmatrix} 1 & x & y & z \end{bmatrix} \begin{bmatrix} 1 & x_1 & y_1 & z_1 \\ 1 & x_2 & y_2 & z_2 \\ 1 & x_3 & y_3 & z_3 \\ 1 & x_4 & y_4 & z_4 \end{bmatrix}^{-1} \begin{bmatrix} \varphi_1 \\ \varphi_2 \\ \varphi_3 \\ \varphi_4 \end{bmatrix} \text{.}
+\end{equation}
+Element shape functions \(\alpha\left(x,y,z\right)\) can be defined by
+\begin{equation}
+    \alpha\left(x,y,z\right) = \begin{bmatrix} 1 & x & y & z \end{bmatrix} \begin{bmatrix} 1 & x_1 & y_1 & z_1 \\ 1 & x_2 & y_2 & z_2 \\ 1 & x_3 & y_3 & z_3 \\ 1 & x_4 & y_4 & z_4 \end{bmatrix}^{-1} \text{,}
+\end{equation}
+leading to the simplification
+\begin{equation}\label{eqn:femDiscretisedPhi}
+    \varphi\left(x,y,z\right) = \sum_{k = 1}^4 \varphi_k \alpha_k\left(x,y,z\right) \text{.}
+\end{equation}
+
+Using the same procedure, the volume charge density \(\rho\) can be calculated across the linear element, giving
+\begin{equation}\label{eqn:femDiscretisedRho}
+    \rho\left(x,y,z\right) = \sum_{k = 1}^4 \rho_k \alpha_k\left(x,y,z\right) \text{,}
+\end{equation}
+where \(\rho_k = -\nabla \cdot \mathbf{M}_k\) is the volume charge density at each node with magnetisation \(\mathbf{M}_k\).
+
+\subsubsection*{Solving by minimising energy}
+Using the constitutive relation on a magnetic material, it is known that the scalar potential satisfies the Poisson equation
+\begin{equation}
+    \nabla ^2 \varphi = -\rho \text{.}
+\end{equation}
+Dirichlet's principle can be used on this Poisson equation, giving an energy functional to be minimised,
+\begin{equation}
+    W\left(\varphi\left(x,y,z\right)\right) = \frac{1}{2} \int \left| \nabla \varphi \right|^2 dv - \int \varphi \rho \ dv \text{.}
+\end{equation}
+Substituting Equations (\ref{eqn:femDiscretisedPhi}) and (\ref{eqn:femDiscretisedRho}) into this functional gives
+\begin{align}
+    W\left(\varphi\left(x,y,z\right)\right) = \sum_{k = 1}^4 \sum_{l = 1}^4 \left[ \frac{1}{2} \varphi_k \left( \int \nabla \alpha_k \cdot \nabla \alpha_l \ dv \right) \varphi_l \right. \nonumber \\
+    \left. - \varphi_k \left( \int \alpha_k \ \alpha_l \ dv \right) \rho_l \right] \text{,}
+\end{align}
+which can be rewritten as the quadratic matrix equation
+\begin{equation}\label{eqn:femQuadMatEqn}
+    W\left(\varphi\left(x,y,z\right)\right) = \frac{1}{2}\bm{\varphi}^\mathsf{T} P \bm{\varphi} - \bm{\varphi}^\mathsf{T} Q \bm{\rho} \text{,}
+\end{equation}
+where
+\begin{align*}
+    \bm{\varphi} &= \begin{bmatrix} \varphi_1 \\ \varphi_2 \\ \varphi_3 \\ \varphi_4 \end{bmatrix} \text{,} \\
+    \bm{\rho} &= \begin{bmatrix} \rho_1 \\ \rho_2 \\ \rho_3 \\ \rho_4 \end{bmatrix} \text{,} \\
+    P_{kl} &= \int \nabla \alpha_k \cdot \nabla \alpha_l \ dv \text{, and} \\
+    Q_{kl} &= \int \alpha_k \alpha_l \ dv \text{.}
+\end{align*}
+
+The above process can be repeated for each element, giving the energy functional \(W_i\) for element \(i\). Summing these gives the total energy of the system,
+\begin{equation}
+    W\left(A_1,A_2,\dots,A_N\right) = \sum_{i = 1}^N W_i \text{.}
+\end{equation}
+To minimise the functional \(W\), the partial derivative is taken with respect to each \(A\) and set to zero,
+\begin{equation}
+    \frac{\partial W}{\partial A_i} = 0 \ \forall i \in \{1,2,\dots,N\}
+\end{equation}
+According to Equation (\ref{eqn:femQuadMatEqn}), \(W\) is a quadratic in \(\varphi_i\). Thus, differentiating \(W\) with respect to \(\varphi_i\) leads to a linear equation in \(\varphi\) being equal to zero. Therefore, differentiating \(W\) with respect to all \(\varphi_i\) gives \(N\) linear equations in \(N\) variables with coefficients defined by the \(P\) and \(Q\) matrices. This gives the matrix equation
+\begin{equation}\label{eqn:femFinalEqn}
+    C \bm{\varphi} = \mathbf{D} \text{,}
+\end{equation}
+where \(C\) is the coefficient matrix of the system and \(\mathbf{D}\) are the constants. Equation (\ref{eqn:femFinalEqn}) can be readily solved with a matrix inverse, giving the magnetic vector potential at each node,
+\begin{equation}
+    \bm{\varphi} = C^{-1}\mathbf{D} \text{.}
+\end{equation}
+
+\subsubsection*{The \textbf{H} and \textbf{B} fields}
+Once the magnetic scalar potential has been calculated at each node, the potential at any point can be approximated using linear interpolation. The \(\mathbf{H}\)-field can be readily calculated by taking the gradient of the scalar potential,
+\begin{equation}
+    \mathbf{H}\left(x,y,z\right) = -\nabla \varphi\left(x,y,z\right) \text{.}
+\end{equation}
+
+Once the \(\mathbf{H}\) field is known at each node, it can be combined with the magnetisation \(\mathbf{M}\) of each node to find the \(\mathbf{B}\) field, given by
+\begin{equation}
+    \mathbf{B} = \mu_0 \left( \mathbf{H} + \mathbf{M} \right) \text{.}
+\end{equation}
+
+\subsubsection*{Force and torque}
+Do I even include this section?
+
+\subsubsection*{Permeable materials}
+The magnetisation \(\mathbf{M}\) of permeable materials changes with the \(\mathbf{H}\)-field, but the above methodology used the initial magnetisation \(\mathbf{M}\). To account for this, the magnetisation at each node can be updated using the calculated \(\mathbf{H}\)-field at each node and the material \(\mathbf{BH}\) (or equivalently \(\mathbf{MH}\)) curve. The volume charge density at each node can be updated with \(\rho = -\nabla \cdot \mathbf{M}\), and the above process repeated until the \(\mathbf{H}\)-field converges.
+
+\subsubsection*{Higher order elements}
+For a more accurate calculation, a quadratic element can be used rather that a linear element. In this case, six additional nodes are placed on the centre of each edge of the tetrahedral element, giving a total of ten nodes per element. The magnetic scalar potential at a point \(\left(x,y,z\right)\) inside the element can then be written as
+\begin{equation}
+    \varphi\left(x,y,z\right) = a + bx + cy + dz + ex^2 + fy^2 + gz^2 + hxy + iyz + jxz \text{.}
+\end{equation}
+This gives a more accurate approximation of the scalar potential and hence any other parameters to be calculated, but comes at the cost of higher computation effort, leading to longer calculation times.
+
+\subsubsection*{Other parameters}
+Such as the magnetic vector potential, etc.
+
+\subsection{Boundary element method}
+
+\begin{figure}
+    \centering
+    %\includegraphics{}
+    \vspace{5cm}
+    \caption{A boundary element model.}
+    \label{fig:BEMschematic}
+\end{figure}
+
+\section{Analytic and semi-analytic}
+
+\subsection{The charge model}
+
+\begin{figure}
+    \centering
+    %\includegraphics{}
+    \vspace{5cm}
+    \caption{Magnetic charge model schematic.}
+    \label{fig:chargeModelSchematic}
+\end{figure}
+
+A common method for analysing magnetic systems is the magnetic charge model, which assumes magnetic charges distributed over the surface and inside magnetic bodies. Although these charges are fictional, they provide a useful tool for calculating magnetic fields, forces, and torques.
+
+The methodology begins with the assumption that no free current \(\mathbf{J}_f\) exists in a static system. Applying these assumptions to Ampere's Law gives
+\begin{equation}
+    \nabla \times \mathbf{H} = 0 \text{.}
+\end{equation}
+Thus, the \(\mathbf{H}\)-field is irrotational, and can therefore be represented with a magnetic scalar potential \(\varphi\), which satisfies
+\begin{equation}\label{eqn:scalarPotentialDefinition}
+    \mathbf{H} = -\nabla \varphi \text{.}
+\end{equation}
+Given a volume of magnetic material \(V\) bounded by a surface \(S\) with magnetisation \(\mathbf{M}\), the constitutive relation \(\mathbf{B} = \mu_0 \left( \mathbf{H} + \mathbf{M} \right)\) can be used. Substituting Equation (\ref{eqn:scalarPotentialDefinition}) into the constitutive relation gives
+\begin{equation}
+    \mathbf{M} = \frac{1}{\mu_0} \mathbf{B} + \nabla \varphi \text{.}
+\end{equation}
+The divergence of both sides is taken, giving
+\begin{equation}
+    \nabla \cdot \mathbf{M} = \frac{1}{\mu_0} \nabla \cdot \mathbf{B} + \nabla^2 \varphi \text{.}
+\end{equation}
+However, the magnetic flux density \(\mathbf{B}\) is solenoidal, \(\nabla \cdot \mathbf{B} = 0\), leading to
+\begin{equation}\label{eqn:scalarPoisson}
+     \nabla^2 \varphi = \nabla \cdot \mathbf{M} \text{.}
+\end{equation}
+Equation (\ref{eqn:scalarPoisson}) is a Poisson equation for the magnetic scalar potential \(\varphi\), and thus can be solved using a Green's function, giving
+\begin{equation}
+    \varphi = -\iiint \frac{\nabla' \cdot \mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' \text{,}
+\end{equation}
+where the integral is taken over all space. However, the magnetisation \(\mathbf{M}\) exists only in the bounded region \(S\) and is zero outside \(S\). Thus, the divergence of \(\mathbf{M}\) is also zero outside of \(S\), with a singularity at the boundary of \(S\). To solve this, two new surfaces are defined. First, the surface \(S^-\) is defined as the surface just inside \(S\), with the surface \(S^+\) defined as the surface just outside \(S\). In addition, the volume \(V^-\) is defined as the volume enclosed by \(S^-\), \(V^+\) defined as the volume outside \(S^-\) but inside \(S^+\), and \(V_\text{ext}\) defined as the volume outside \(S^+\). Thus,
+\begin{equation}
+    V_\text{ext} \cup V^- \cup V^+ = \mathbb{R}^3 \text{.}
+\end{equation}
+The integral over all space can then be written as the sum of volume integrals over each of the three volumes,
+\begin{equation}
+    \varphi = -\iiint_{V_\text{out}} \frac{\nabla' \cdot \mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' -\iiint_{V^-} \frac{\nabla' \cdot \mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' -\iiint_{V^+} \frac{\nabla' \cdot \mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' \text{.}
+\end{equation}
+Now, since the magnetisation vector field is zero outside the magnet, so too is the divergence. Therefore, the first integral is zero and can be removed, leaving
+\begin{equation}
+    \varphi = -\iiint_{V^-} \frac{\nabla' \cdot \mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' -\iiint_{V^+} \frac{\nabla' \cdot \mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' \text{.}
+\end{equation}
+
+Consider the integral for the volume \(V^+\). The integrand can be rewritten using the vector calculus chain rule,
+\begin{equation}
+    \nabla' \cdot \left( \frac{1}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} \mathbf{M} \right) = \frac{\nabla' \cdot \mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} + \mathbf{M} \cdot \nabla' \frac{1}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} \text{.}
+\end{equation}
+Thus, the integral over \(V^+\) can be written
+\begin{equation}
+    \iiint_{V^+} \frac{\nabla' \cdot \mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' = \iiint_{V^+} \nabla' \cdot \frac{\mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' - \iiint_{V^+} \mathbf{M} \cdot \nabla' \frac{1}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x'
+\end{equation}
+This equation can be simplified by taking the limit as \(S^-\) approaches \(S\). Since \(\mathbf{M}\) is reduced to zero on \(S\), the final integral becomes zero,
+\begin{equation}
+    \lim_{S^- \to S} \iiint_{V^+} \mathbf{M} \cdot \nabla' \frac{1}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' = \iiint_{V^+} \bm{0} \cdot \nabla' \frac{1}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' = 0
+\end{equation}
+Therefore,
+\begin{equation}
+    \lim_{S^- \to S} \iiint_{V^+} \frac{\nabla' \cdot \mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x' = \lim_{S^- \to S} \iiint_{V^+} \nabla' \cdot \frac{\mathbf{M}}{4\pi \left| \mathbf{x} - \mathbf{x}' \right|} d^3x'
+\end{equation}
+
+\subsection{The current model}
+
+\begin{figure}
+    \centering
+    %\includegraphics{}
+    \vspace{5cm}
+    \caption{Current model schematic}
+    \label{fig:currentModelSchematic}
+\end{figure}
+
+\subsection{Cuboidal magnets}
+
+\begin{figure}
+    \centering
+    %\includegraphics{}
+    \vspace{5cm}
+    \caption{Cuboidal magnets.}
+    \label{fig:cuboidalMagnetsSchematic}
+\end{figure}
+
+Although permanent magnets were being manufactured in the 18th century \cite{Moskowitz1995}, they were relatively weak and easily demagnetised. In addition, there was little industry need for permanent magnets \cite{Moskowitz1995}, leading to little research attention in lieu of electromagnetic coils. Many developments in the 20th century, however, led to stronger permanent magnet materials, and thus more widespread use. In the 1960s, the first rare-earth magnets were invented in the form of samarium cobalt (SmCo) magnets. These stronger magnets were less prone to demagnetisation and prompted more research into magnetic modelling. This began when \textcite{Tsui1972} attempted to analytically calculate the force between two parallel cuboidal permanent magnets. This used the Lorentz force approach, requiring four nested integrals. They were able to analytically solve the first three integrals, but required numeric integration for the last. The next decade, \textcite{Akoun1984} used a different method on the same problem. Rather than the Lorentz force, they calculated the magnetic energy in the system, also requiring four nested integrals. However, they were able to solve all four integrals and take the gradient of the energy to calculate the magnetic field. In addition, they presented the analytic magnetic field produced by one of the magnets. Although these equations were an important breakthrough in magnetostatics, they had considerable limitations in their use. These equations assume the magnets are parallel, with parallel magnetisation vectors along one of the principal axes. Furthermore, it is assumed that their magnetisations are rigid and uniform, with both magnets having permeability equal to that of free space.
+
+The following decade, \textcite{Bancel1999} noticed the aforementioned equations could be represented in an interesting way. By slightly manipulating the field and force equations, they could be written as a summation of fields and forces produced by point charges on the vertices of the magnets, leading to the concept of `magnetic nodes'. Although this did not lead to any significant developments, it promoted the idea of mathematical manipulation of these complicated equations. The concept of magnetic nodes was later expanded by \textcite{Yonnet2011} when these nodes were applied to the torque between two cuboidal magnets.
+
+A significant implication of stronger magnetic materials in the second half of the 20th century was the development of stronger permanent magnet electric motors and torque couplers. The equations published by \textcite{Akoun1984} could not be used to analyse these devices, since the magnets had a relative rotation between them. This inspired a set of publications in the late 1990s \cite{Charpentier1999,Charpentier1999a,Elies1998,Elies1999} which explored the force between cuboidal magnets with relative rotation about one axis. While this was useful for analysing rotating cuboidal magnets, these equations were limited similarly to those published earlier. The magnets had to be aligned along the axis of rotation, which is valid for many motors and torque couplers, but limited use elsewhere. Furthermore, rotation about only one axis was allowed, and all magnets must have rigid, uniform magnetisation and have permeability equal to that of free space. In addition, it is unclear how these equations were derived, and no validation is performed.
+
+By the turn of the millennia, permanent magnets had become widespread, leading to more research interest into modelling them. In particular, researchers were interested in generalising the work done previously by removing assumptions. In 2009, \textcite{Ravaud2009} generalised the field equations for a cuboidal magnet by allowing arbitrary magnetisation direction. This was done using a superposition approach; three coincident cuboidal permanent magnets were modelled, with each having magnetisation in one of the principal axes. The field due to each of these magnets was summed, giving the total field due to any magnetisation direction. This, again, assumed rigid uniform magnetisation and a relative permeability of unity.
+
+This trend of generalising the magnetisation direction continued that same year with two research groups exploring the forces and torques between cuboidal magnets with arbitrary magnetisations. Between 2009 and 2015, publications by Janssen et al. \cite{Janssen2009a,Janssen2010,Janssen2011} and Allag et al. \cite{Allag2009,Allag2009a,Allag2009b,Allag2015} found expressions for the force and torque between cuboidal magnets with arbitrary magnetisation directions.
+
+\subsection{Cylindrical and ring magnets}
+While cuboidal permanent magnets are often used in a linear or planar magnetic system, cylindrical and ring magnets have equivalent use in a rotational system such as in electric motors and magnetic bearings. Furthermore, ring magnets have constant boundary values in a cylindrical coordinate system, vastly simplifying the integrals associated with modelling these magnets. Due to these characteristics, ring magnets have seen extensive attention in literature, with early work on magnetic bearings by Yonnet \cite{Yonnet1978,Yonnet1981}. However, these studies used the dipole model on a two-dimensional space, limiting accuracy. \textbf{Maybe more here.} These early publications would lead to more general formulations over the next decades.
+\begin{figure}
+    \centering
+    \vspace{5cm}
+    \caption{Ring or cylindrical magnet}
+    \label{fig:ringMagnet}
+\end{figure}
+
+Attempts to accurately model ring magnets began in the last decade of the 20th century, with \textcite{Furlani1994} using the magnetic vector potential to model multipole disk magnets created with axially magnetised ring sectors. However, he was unable to analytically evaluate all integrals, and numeric integration is required. Shortly after, \textcite{Furlani1994a} modelled bipolar cylindrical magnets, with the magnetisation vector orthogonal to the cylinder axis. Again, they could not analytically evaluate all integrals and required numeric integration. Similarly, \textcite{Furlani1995} explored radially magnetised ring magnets, but again required numeric integration. Few developments would follow until the integration of elliptic integrals the following decade.
+
+Eventually, expressions for the field components of ring and cylindrical magnets were made more efficient by using elliptic integrals rather than numeric integration since elliptic integrals had efficient evaluation algorithms. The axially magnetised ring magnet was revisited by \textcite{Ravaud2008} using the charge model, with volume charge becoming zero and leaving only surface charge. The integrals in this model were manipulated, allowing elliptic integrals to be introduced while solving, leading to faster computation than seen earlier. Radial magnetisation was soon followed by the same authors \cite{Ravaud2008a} using the surface charge model with elliptic integrals. However, volume charge is nonzero for the radial magnetisation case, and the expressions were adapted later \cite{Ravaud2009a} to incorporate this volume charge and improve the accuracy of the expressions.
+
+With known field solutions for ring magnets with radial and axial magnetisation, one interesting case remained. Transverse magnetisation, where a cylindrical magnet is magnetised in a straight line orthogonal to its axis, was explored by \textcite{Caciagli2018}. They found field equations for a cylinder with transverse magnetisation using the magnetic scalar potential, and combined with the axial magnetisation field equations, were able to evaluate the magnetic field due to magnetisation in any cartesian direction.
+
+\subsection{Polyhedral magnets}
+
+\begin{figure}
+    \centering
+    %\includegraphics{}
+    \vspace{5cm}
+    \caption{Polyhedral magnet.}
+    \label{fig:polyhedralMagnetSchematic}
+\end{figure}
+
+As the literature on cuboidal and ring magnet modelling matured, a trend toward generalising the models was present. However, even with this trend, these models are still limited to their specific geometries; any other geometry requires an alternative model. To solve this, researchers have explored polyhedral geometries, which applies to any geometry composed of flat faces.
+
+Prismatic permanent magnets are a type of polyhedral magnet created by extruding a polygon along an axis and have been modelled using various methods. These magnets have been of interest to researchers due to their potential use in rotational and linear motors. In particular, trapezial prismatic magnets have seen interest in linear Halbach arrays in place of more traditional cuboidal magnets. Assuming the magnets are long enough along the extrusion axis, they can be modelled with relative accuracy using a two-dimensional approach, such as that taken by \textcite{Lee2004}. However, a three-dimensional approach is more accurate at the cost of more difficult analysis. \textcite{Meessen2008} approximated the same trapezial prismatic magnets by stacking cuboidal magnets of decreasing (or increasing) width on top of one another. The analytic field equations \cite{Akoun1984,Ravaud2009} for cuboidal magnets can be summed to give an estimate of the field produced by the prism. If a sufficient number of cuboidal magnets are used, this presents a relatively accurate solution at the cost of computation effort. Other prismatic magnets have also been explored in literature. For example, \textcite{Soltner2010} \textbf{could add more soltner} examined the field produced by polyhedral prismatic magnets arranged around a circle in attempt to create a uniform field inside the circle. However, their approach used a magnetic dipole model, where each magnet is approximated as a point dipole and magnet geometry has no effect on the field produced. This approach is relatively accurate when calculating the field far from the magnet, but becomes inaccurate when calculating the field close to the magnet.
+
+Although polygonal prismatic magnets have potential in some geometric configurations, more general polyhedra are far more versatile. General polyhedral permanent magnets have been considered by several authors, but have proven difficult to analyse. \textcite{Bancel1999} suggested stacking cuboidal magnets as early as 1999, but this requires significant computation effort to accurately model nontrivial polyhedral magnets.
+
+Recently, researchers have applied various methods to model polyhedral magnets more accurately. \textcite{Compter2010} used the current model to derive field equations for generalised polyhedral magnets by decomposing the magnet into current-carrying rectangular and triangular sheets. This methodology requires the permeability of the magnet to be equal to that of free space and the magnetisation to be uniform and constant. While this methodology is more accurate than the cuboid-stacking methodology outlined by \textcite{Bancel1999}, the nontrivial geometry invokes difficult integrals, and the resulting equations are complicated. A similar approach was taken by \textcite{Janssen2009,Janssen2010a}, who used the charge model rather than the current model on polyhedral magnets. Their methodology decomposed the magnets into charged surfaces rather than current-carrying sheets, which also required magnet permeability equal to that of free space and constant uniform magnetisation. While their methodology achieved arguably simpler equations, the expressions were still complicated and required considerable computational effort to solve.
+
+Several years later, \textcite{Rubeck2013} used the charge model to derive considerably simplified field equations. This methodology used a coordinate transformation based on the location of the point at which the field is to be calculated at, therefore placing the field point at the origin. Again, this required magnet permeability equal to that of free space and constant uniform magnetisation. While this methodology provided simplified field equations, the relatively slow magnet decomposition process must be undertaken once for each magnetic field calculation. Thus, this method may be used for fast computation of the magnetic field at few points, but becomes slow for many field points.
+
+The methodologies presented by \textcite{Compter2010}, \textcite{Janssen2009,Janssen2010a}, and \textcite{Rubeck2013} require coordinate transforms to calculate the magnetic field produced by a polyhedral permanent magnet. This may considerably decrease the speed of field calculations, especially for geometries with a large number of faces. To alleviate this, \textcite{Fabbri2008} derived equivalent field equations without using coordinate transforms. Rather, vector identities were used to generalise the integrals to arbitrary coordinate systems. While this removed dependence on coordinate transforms, the expressions are relatively complicated and require computationally demanding vector operations such as scalar and vector products.
+
+\subsection{Halbach arrays \textit{Do circular, linear, and planar}}
+Permanent magnets are often seen in arrays for various applications such as electric motors, generators, and undulators. The most common type of permanent magnet array is the Halbach array, first theorised by \textcite{Mallinson1973} in 1973, with further research done by \textcite{Halbach1980}. The ideal Halbach configuration (Figure \ref{fig:idealHalbachArray}) consists of a length of ferromagnetic material with a magnetisation vector which rotates along the length of the material, leading to an effective doubling of the flux on one side of the array and zero flux on the other side. However, a constantly rotating magnetisation vector is not physically realisable. Instead, practical implementations of Halbach arrays consist of segmented permanent magnets with the magnetisation of each rotated with respect to its neighbours (Figure \ref{fig:segmentedHalbachArray}). In effect, this almost doubles the field strength on the strong side, while minimising it on the weak side. In addition, the magnetic field on the strong side is oscillatory along the length of the array. These two characteristics make the Halbach array essential for many linear and rotational motors, since they minimise leakage flux due to their weak side, and allow efficient translation or rotation with their strong, oscillating field. Due to its effectiveness in permanent magnet motors and generators, the Halbach array has received considerable attention in literature, with many authors attempting to model and optimise the array.
+\begin{figure}
+    \centering
+    \vspace{5cm}
+    \caption{Ideal Halbach array}
+    \label{fig:idealHalbachArray}
+\end{figure}
+\begin{figure}
+    \centering
+    \vspace{5cm}
+    \caption{Segmented Halbach array}
+    \label{fig:segmentedHalbachArray}
+\end{figure}
+
+The periodic magnetisation pattern of the Halbach array allows modelling with the Fourier series method used by many authors. Since the magnetisation pattern is periodic, it can be modelled as a Fourier series. Additionally, since the magnetisation pattern is periodic, so too is the magnetic field distribution along the length of the array, the strength of which decaying exponentially with distance from the array. The Fourier series approach for Halbach arrays is widely used due to its simplicity, but becomes less accurate near the end of the array. \textbf{Talk about this more. Maybe put this mini section about the drawbacks in the following paragraph.}
+
+An approach often used to remedy this is to use the charge or current method to model individual magnets, and sum the effects of each for the total field. However, this may be computationally expensive for large arrays, since a calculation must be performed for every magnet in the array.
+
+To optimise the Halbach array, several approaches have been considered. One such approach is by modifying the magnetisations of the magnets. Rather than having each magnetisation an angle of \ang{90} to the neighbouring magnets, the angle can be reduced, shown in Figure \ref{fig:halbachAngle}.
+\begin{figure}
+    \centering
+    \vspace{5cm}
+    \caption{Halbach angle}
+    \label{fig:halbachAngle}
+\end{figure}
+This has the effect of the segmented Halbach array tending more toward an idealised Halbach array, since the magnetisation vector is rotating more smoothly. \textbf{Add in some authors and what they've found etc.} \textit{Also look into the relative magnitudes of the magnetisation vectors.}
+
+Rather than magnetisation direction, the relative size of each magnet can be modified to optimise the array. \textbf{Go on...}
+
+These optimisation routines can be further generalised by considering magnets of alternative geometries. Trapezoidal prismatic magnets may be formed into a Halbach array (Figure \ref{fig:trapezoidalPrismaticHalbach}), and may provide more desirable characteristics than a cuboidal magnet Halbach array.
+\begin{figure}
+    \centering
+    \vspace{5cm}
+    \caption{Halbach array with trapezoidal prismatic magnets}
+    \label{fig:trapezoidalPrismaticHalbach}
+\end{figure}
+While \textcite{Lee2004} and \textcite{Meessen2008} used differing methodologies for analysing these arrays, they both came to the conclusion that trapezoidal prismatic Halbach arrays can produce a larger actuating force when applied to a linear motor than that of equivalent cuboidal arrays. Interestingly, these trapezoidal prismatic arrays can produce a larger maximum field strength than an equivalent cuboidal array, but at the cost of weaker field strength in other locations. Furthermore, \textcite{Lee2006} found that a trapezoidal prismatic Halbach array distorts the magnetic field, having closer resemblance to a trapezoidal wave than the desired sine wave. This leads to force ripple when applied to a linear motor, but can be remedied by shaping the current applied to the coils \cite{Lee2006}.
+
+\textbf{Triangular magnets too.}
+
+\subsubsection*{Planar arrays}
+In addition to linear arrays, the Halbach magnetisation pattern can be applied to planar arrays of magnets by superimposing two sets of orthogonal linear Halbach arrays over one another (Figure \ref{fig:planarHalbachArray}). In this way, a spatially periodic magnetic field distribution is formed, allowing a coil-based actuator to move in two orthogonal directions.
+\begin{figure}
+    \centering
+    \vspace{5cm}
+    \caption{Planar Halbach array}
+    \label{fig:planarHalbachArray}
+\end{figure}
+However, to achieve the Halbach magnetisation pattern in two dimensions, some parts of the array must be empty, leading to unused space in the array. Many authors have attempted to optimise the planar array by modifying the relative size of the magnets, potentially reducing the unused space (Figure \ref{fig:planarHalbachArrayModifiedPoles}). Often, the magnets with magnetisations parallel to the plane are made smaller, while the other magnets are made larger. \textbf{Talk about the shorter sideways magnets.}
+\begin{figure}
+    \centering
+    \vspace{5cm}
+    \caption{Planar Halbach array with empty space reduced}
+    \label{fig:planarHalbachArrayModifiedPoles}
+\end{figure}
+
+Planar Halbach arrays have seen optimisation in literature by increasing the number of magnets per pole pitch. The additional magnets are magnetised in a 
+
+\subsection{Other geometries}
+
+\subsubsection*{Spherical magnets}
+
+\subsubsection*{Generalised methodologies}
+
+\subsection{Permeability}
+A significant challenge in modelling permanent magnets is the phenomenon of permeability. Many materials, including permanent magnet materials, alter their magnetisation state when a magnetic field is present. In some materials, such as aluminium, this effect is so small that it is assumed negligible. However, in others, such as iron, the effect is extremely significant and must be considered in any electromagnetic design involving the material.
+
+This effect may be quantified by the permeability of a material, a non-negative value which describes the change in magnetisation based on the applied magnetic field. While permeability is measured in units of Henries per metre, it is often represented as a dimensionless relative permeability \(\mu_r\), given by the ratio
+\begin{equation}
+    \mu_r = \frac{\mu}{\mu_0} \text{,}
+\end{equation}
+where \(\mu\) is the permeability of the material, and \(\mu_0 = 4\pi \times 10^{-7}\)~\si{\henry\per\metre} is the permeability of a vacuum. Magnetic materials may be categorised by their relative permeabilities, with common categories discussed below.
+\begin{figure}
+    \centering
+    %\includegraphics{}
+    \vspace{5cm}
+    \caption{Magnetic categories.}
+    \label{fig:magneticCategories}
+\end{figure}
+
+\subsubsection*{Paramagnetism}
+Paramagnetic materials have atomic magnetic moments caused by unpaired electrons, but the couplings between these atomic moments is negligible. Thus, if a magnetic field is applied, each atomic moment will tend to align slightly with the field, but no bulk magnetisation occurs due to weak magnetic interaction between the atomic moments. While these materials do slightly vary their magnetisation with an applied field, the effect is so small that it is often neglected. Materials such as aluminium and titanium, which are often considered non-magnetic, are examples of paramagnetic materials.
+
+\subsubsection*{Diamagnetism}
+Diamagnetic materials consist of atoms with no unpaired electrons, leading to no net atomic magnetic moment. Due to this, quantum effects become the strongest magnetic effect, and the material opposes applied magnetic fields. However, the effect is usually extremely small and difficult to detect. Pyrolytic carbon is an example of a diamagnetic material, and due to its low density, it can be passively levitated above an array of magnets.
+
+\subsubsection*{Ferromagnetism}
+Ferromagnetic materials are what we commonly refer to as `magnetic materials'. They consist of atoms with a net magnetic moment, but with strong coupling between neighbouring atoms. Thus, when an external field is applied, the atomic moments tend to align together with the field due to the strong coupling. This causes bulk magnetisation, where all magnetic moments are aligned in approximately the same direction. Iron is likely the most well-known ferromagnetic material, but other materials such as nickel and cobalt are also ferromagnetic.
+
+\subsubsection*{Ferrimagnetism and antiferromagnetism}
+Ferrimagnetic and antiferromagnetic materials consist of atoms which tend to align antiparallel to neighbouring atoms. In antiferromagnetic materials, these magnetic moments are equal in magnitude, leading to no overall net magnetic moment. However, in ferrimagnetic materials, the moments are unequal in magnitude, allowing a net magnetic moment and a magnetisation can be formed. The lodestone, made of magnetite, is an example of a ferrimagnetic material, and manganese oxide is an example of an antiferromagnetic material.
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c}
+         Material & Relative permeability & Classification \\
+         & &
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:my_label}
+\end{table}
+
+\subsubsection*{Permanent magnets}
+The majority of literature on permanent magnetic modelling is based on permanent magnets having a relative permeability of unity. Therefore, the effect of an external field, and even the self-field generated by a magnet, is not considered. While this greatly simplifies analysis and allows analytic equations to be derived, it introduces an error in field, force, and torque calculations. The error is often relatively small, at approximately 5\% for common rare-earth magnets \textbf{citation needed}, but it limits the accuracy of these formulations.
+
+Some authors have attempted to find solutions to the permeability problem. 
+
+\newpage
+%\section{References}
+\printbibliography[title=References]

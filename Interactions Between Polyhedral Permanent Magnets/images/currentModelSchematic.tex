@@ -1,0 +1,28 @@
+\begin{tikzpicture}
+
+\newcommand \cc {1.5}
+
+\coordinate(nnn) at (-\cc,-\cc,-\cc);
+\coordinate(pnn) at (\cc,-\cc,-\cc);
+\coordinate(npn) at (-\cc,\cc,-\cc);
+\coordinate(ppn) at (\cc,\cc,-\cc);
+\coordinate(nnp) at (-\cc,-\cc,\cc);
+\coordinate(pnp) at (\cc,-\cc,\cc);
+\coordinate(npp) at (-\cc,\cc,\cc);
+\coordinate(ppp) at (\cc,\cc,\cc);
+
+\draw (ppp) -- (npp) -- (nnp) -- (pnp) -- cycle;
+\draw (npp) -- (npn) -- (ppn) -- (pnn) -- (pnp);
+\draw (ppp) -- (ppn);
+\draw[dashed] (npn) -- (nnn) -- (pnn);
+\draw[dashed] (nnn) -- (nnp);
+
+\foreach \i in {-0.67,0,0.67}
+{
+    \draw[->] (-0.5*\cc,\i,\cc) -- (0.5*\cc,\i,\cc);
+    \draw[->] (\cc,\i,0.5*\cc) -- (\cc,\i,-0.5*\cc);
+    \draw[->,dashed] (0.5*\cc,\i,-\cc) -- (-0.5*\cc,\i,-\cc);
+    \draw[->,dashed] (-\cc,\i,-0.5*\cc) -- (-\cc,\i,0.5*\cc);
+}
+
+\end{tikzpicture}

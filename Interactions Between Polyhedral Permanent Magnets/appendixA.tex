@@ -1,0 +1,172 @@
+To prove the magnetic charge model, two main steps are performed. First, Helmholtz decomposition is proven for the magnetisation vector field \(\mathbf{M}\). Once this is done, the magnetic constitutive relation, \(\mathbf{B} = \mu_0 \left(\mathbf{H} + \mathbf{M}\right)\), is used to find expressions for the magnetic flux density \(\mathbf{B}\) and the magnetic field intensity \(\mathbf{H}\).
+
+\section*{Helmholtz decomposition}
+We begin with a volume \(V'\) of magnetic material bounded by a surface \(S'\). The magnetisation vector field \(\mathbf{M}\left(\mathbf{x}\right)\) is finite-valued inside \(V'\) and can therefore be written as a volume integral over the volume,
+\begin{equation}\label{eqn:MintegralFormulation}
+    \mathbf{M}\left(\mathbf{x}\right) = \iiint_{V'} \mathbf{M}\left(\mathbf{x}'\right) \delta^3 \left(\mathbf{x}-\mathbf{x}'\right)\ d^3v' \text{,}
+\end{equation}
+where \(\delta^3\left(\mathbf{x}-\mathbf{x}'\right)\) is the three-dimensional delta function. Usually, we constrain \(\mathbf{x}\) to be inside \(V'\), that is, \(\mathbf{x} \in V'\), since the integral is zero-valued if \(\mathbf{x} \notin V'\). However, the magnetisation vector field \(\mathbf{M}\left(\mathbf{x}\right)\) is also zero-valued everywhere outside the volume \(V'\). Thus, Equation (\ref{eqn:MintegralFormulation}) is valid for all \(\mathbf{x} \in \mathbb{R}^3\).
+
+It is also known that the delta function \(\delta^3\) is given by the Laplacian of a Green's function,
+\begin{equation}\label{eqn:laplacianGreens}
+    \delta^3\left(\mathbf{x}-\mathbf{x}'\right) = \nabla^2 G\left(\mathbf{x},\mathbf{x}'\right) = \nabla'^2 G\left(\mathbf{x},\mathbf{x}'\right) \text{,}
+\end{equation}
+where
+\begin{equation}\label{eqn:greensFunction}
+    G\left(\mathbf{x},\mathbf{x}'\right) = -\frac{1}{4\pi\left| \mathbf{x}-\mathbf{x}' \right|}
+\end{equation}
+and \(\nabla'\) is the Laplacian with respect to the primed coordinates \(\mathbf{x}'\).
+
+Equation (\ref{eqn:laplacianGreens}) can be applied to the integral in Equation (\ref{eqn:MintegralFormulation}), giving
+\begin{equation}
+    \mathbf{M}\left(\mathbf{x}\right) = \iiint_{V'} \mathbf{M}'\ \nabla^2 G\ d^3v' \text{,}
+\end{equation}
+where \(\mathbf{M}' = \mathbf{M}\left(\mathbf{x}'\right)\) and the arguments of the Green's function have been omitted for brevity.
+
+Assuming \(\mathbf{M}\) is twice continuously differentiable inside the volume \(V'\), the identity
+\begin{equation}\label{eqn:laplacianIdentity}
+    \nabla^2 \left(G\mathbf{M}'\right) = \mathbf{M}'\ \nabla^2 G + 2\left(\nabla G \cdot \nabla\right)\mathbf{M}' + G \nabla^2 \mathbf{M}'
+\end{equation}
+is true. However, since \(\mathbf{M}'\) varies only with the primed coordinates, the Jacobian and Laplacian terms in Equation (\ref{eqn:laplacianIdentity}) become zero, leaving
+\begin{equation}
+    \nabla^2 \left(G\mathbf{M}'\right) = \mathbf{M}'\ \nabla^2G \text{.}
+\end{equation}
+Therefore,
+\begin{equation}
+    \mathbf{M}\left(\mathbf{x}\right) = \iiint_{V'} \nabla^2 \left(\mathbf{M}' G\right)\ d^3v' \text{.}
+\end{equation}
+The integrand is vector-valued, and the vector Laplacian identity
+\begin{equation}
+    \nabla^2 \mathbf{A} = \nabla \left( \nabla \cdot \mathbf{A}\right) - \nabla \times \left( \nabla \times \mathbf{A} \right)
+\end{equation}
+can be applied, giving
+\begin{align}
+    \mathbf{M}\left(\mathbf{x}\right) = \iiint_{V'} & \nabla \left( \nabla \cdot \left(\mathbf{M}' G \right) \right)\ d^3v' \nonumber \\
+    & - \iiint_{V'} \nabla \times \left( \nabla \times \left(\mathbf{M}' G\right) \right)\ d^3v' \text{.}
+\end{align}
+Here, the gradient and curl operate on the unprimed coordinates, so can be moved inside the integrals, giving
+\begin{align}
+    \mathbf{M}\left(\mathbf{x}\right) = \nabla \iiint_{V'} \nabla & \cdot \left(\mathbf{M}' G \right) \ d^3v' \nonumber \\
+    & - \nabla \times \iiint_{V'} \nabla \times \left( \mathbf{M}' G\right)\ d^3v' \text{.}
+\end{align}
+The first integrand can be expanded using the vector calculus product rule,
+\begin{equation}
+    \nabla \cdot \left( \mathbf{M}' G\right) = G\ \nabla \cdot \mathbf{M}' + \mathbf{M}' \cdot \nabla G \text{.}
+\end{equation}
+However, \(\mathbf{M}'\) is constant with respect to the unprimed coordinates, and as such \(\nabla \cdot \mathbf{M}' = 0\), and
+\begin{equation}
+    \nabla \cdot \left( \mathbf{M}' G\right) = \mathbf{M}' \cdot \nabla G \text{.}
+\end{equation}
+A similar identity can be used on the second integrand, giving
+\begin{equation}
+    \nabla \times \left( \mathbf{M}' G\right) = \mathbf{M}' \times \nabla G \text{.}
+\end{equation}
+Therefore,
+\begin{align}
+    \mathbf{M}\left(\mathbf{x}\right) = \nabla \iiint_{V'} & \mathbf{M}' \cdot \nabla G \ d^3v' \nonumber \\
+    & - \nabla \times \iiint_{V'} \mathbf{M}' \times \nabla G\ d^3v' \text{.}
+\end{align}
+
+For the Green's function defined in Equation (\ref{eqn:greensFunction}), the gradient coordinate system can be modified from the unprimed coordinates to the primed coordinates using the identity \(\nabla G = -\nabla' G\), leading to
+\begin{align}
+    \mathbf{M}\left(\mathbf{x}\right) = -\nabla \iiint_{V'} & \mathbf{M}' \cdot \nabla' G \ d^3v' \nonumber \\
+    & + \nabla \times \iiint_{V'} \mathbf{M}' \times \nabla' G\ d^3v' \text{.}
+\end{align}
+By rearranging the vector product rule on the divergence of \(G\mathbf{M}'\) with respect to the primed coordinates, we obtain
+\begin{equation}
+    \mathbf{M}' \cdot \nabla' G = \nabla' \cdot \left(G\mathbf{M}'\right) - G \nabla' \cdot \mathbf{M}' \text{.}
+\end{equation}
+By applying a similar identity to the curl of \(G\mathbf{M}'\), we obtain
+\begin{equation}
+    \mathbf{M}' \times \nabla' G = -\nabla' \times \left( G\mathbf{M}' \right) + G\ \nabla' \times \mathbf{M}' \text{.}
+\end{equation}
+Substituting these identities into the expression for \(\mathbf{M}\left(\mathbf{x}\right)\) gives
+\begin{align}\label{eqn:chargeModelM_fourIntegrals}
+    \mathbf{M}\left(\mathbf{x}\right) = -\nabla \left( -\iiint_{V'} G\ \nabla' \cdot \mathbf{M}'\ d^3v' + \iiint_{V'} \nabla' \cdot \left(G\mathbf{M}'\right) d^3v' \right) \nonumber \\
+    -\nabla \times \left( \iiint_{V'} G\ \nabla' \times \mathbf{M}' d^3v' - \iiint_{V'} \nabla' \times \left( G\mathbf{M}'\right) d^3v' \right) \text{.}
+\end{align}
+
+The divergence theorem states that for a well-behaved vector field \(\mathbf{F}\) in a volume \(V'\) bounded by a surface \(S'\) with outward-facing unit normal vector \(\hat{\mathbf{n}}'\),
+\begin{equation}
+    \iiint_{V'} \nabla' \cdot \mathbf{F}\ d^3v' = \oiint_{S'} \mathbf{F} \cdot \hat{\mathbf{n}}'\ d^2s' \text{.}
+\end{equation}
+In addition, a corollary of the divergence theorem states
+\begin{equation}
+    \iiint_{V'} \nabla' \times \mathbf{F}\ d^3v' = -\oiint_{S'} \mathbf{F} \times \hat{\mathbf{n}}'\ d^2s' \text{.}
+\end{equation}
+These can be applied to the second and fourth integral in Equation (\ref{eqn:chargeModelM_fourIntegrals}), giving
+\begin{align}
+    \mathbf{M}\left(\mathbf{x}\right) = -\nabla \left( -\iiint_{V'} G\ \nabla' \cdot \mathbf{M}'\ d^3v' + \oiint_{S'} G\mathbf{M}' \cdot \hat{\mathbf{n}}'\ d^2s' \right) \nonumber \\
+    -\nabla \times \left( \iiint_{V'} G\ \nabla' \times \mathbf{M}' d^3v' + \oiint_{S'} G\mathbf{M}' \times \hat{\mathbf{n}}'\ d^2s' \right) \text{,}
+\end{align}
+with \(G\) defined as in Equation (\ref{eqn:greensFunction}).
+
+At this point, the magnetisation vector field is given by the gradient of some integral added to the curl of another integral. We can define a scalar potential \(\varphi\) and vector potential \(\mathbf{A}\) to simplify the expression for \(\mathbf{M}\left(\mathbf{x}\right)\), with
+\begin{equation}
+    \varphi\left(\mathbf{x}\right) = \frac{1}{4\pi} \iiint_{V'} \frac{\nabla' \cdot \mathbf{M}'}{\left| \mathbf{x} - \mathbf{x}'\right|}\ d^3v' - \frac{1}{4\pi} \oiint_{S'} \frac{\mathbf{M}'\cdot \hat{\mathbf{n}}'}{\left| \mathbf{x} - \mathbf{x}'\right|}\ d^2s' \text{, and}
+\end{equation}
+\begin{equation}
+    \mathbf{A}\left(\mathbf{x}\right) = \frac{1}{4\pi} \iiint_{V'} \frac{\nabla' \times \mathbf{M}'}{\left| \mathbf{x} - \mathbf{x}'\right|}\ d^3v' + \frac{1}{4\pi} \oiint_{S'} \frac{\mathbf{M}'\times \hat{\mathbf{n}}'}{\left| \mathbf{x} - \mathbf{x}'\right|}\ d^2s' \text{,}
+\end{equation}
+giving
+\begin{equation}
+    \mathbf{M}\left(\mathbf{x}\right) = -\nabla \varphi\left(\mathbf{x}\right) + \nabla \times \mathbf{A}\left(\mathbf{x}\right) \text{.}
+\end{equation}
+
+Now we can apply the magnetostatic Maxwell's equations to the magnetisation vector field. Starting with
+\begin{equation}
+    \mathbf{B} = \mu_0 \left( \mathbf{H} + \mathbf{M} \right) \implies \mathbf{M} = \frac{1}{\mu_0} \mathbf{B} - \mathbf{H} \text{.}
+\end{equation}
+Therefore,
+\begin{equation}\label{eqn:BHandPhiA}
+    \frac{1}{\mu_0} \mathbf{B} - \mathbf{H} =  -\nabla \varphi + \nabla \times \mathbf{A} \text{.}
+\end{equation}
+
+\section*{Solving for the magnetic flux density and magnetic field intensity}
+Equation (\ref{eqn:BHandPhiA}) implies that some part of the \(\mathbf{B}\)-field and some part of the \(\mathbf{H}\)-field sum to give \(-\nabla \varphi\), with the remaining \(\mathbf{B}\) and \(\mathbf{H}\) summing to give \(\nabla \times \mathbf{A}\). This can be written using
+\begin{equation}\label{eqn:gradPhi}
+    -\nabla \varphi = p\frac{1}{\mu_0} \mathbf{B} - q\mathbf{H} \text{, and}
+\end{equation}
+\begin{equation}\label{eqn:curlA}
+    \nabla \times \mathbf{A} = \left(1-p\right)\frac{1}{\mu_0}\mathbf{B} - \left(1-q\right) \mathbf{H} \text{.}
+\end{equation}
+Taking the curl of Equation (\ref{eqn:gradPhi}) gives
+\begin{equation}
+    \nabla \times \left(-\nabla \varphi\right) = p\frac{1}{\mu_0}\nabla \times \mathbf{B} - q\nabla \times \mathbf{H} \text{.}
+\end{equation}
+However, we are assuming that \(\nabla \times \mathbf{H} = \mathbf{0}\). Furthermore, the curl of a gradient is zero, so \(\nabla \times \left( -\nabla \varphi\right) = \mathbf{0}\). Thus,
+\begin{equation}
+    p\nabla \times \mathbf{B} = \mathbf{0} \text{.}
+\end{equation}
+In general, the curl of \(\mathbf{B}\) is nonzero, implying that \(p = 0\). Equation (\ref{eqn:curlA}) then simplifies to
+\begin{equation}
+    \nabla \times \mathbf{A} = \frac{1}{\mu_0}\mathbf{B} - \left(1-q\right)\mathbf{H} \text{.}
+\end{equation}
+Taking the divergence of this equation gives
+\begin{equation}
+    \nabla \cdot \left( \nabla \times \mathbf{A} \right) = \frac{1}{\mu_0}\nabla \cdot \mathbf{B} - \left(1-q\right)\nabla \cdot \mathbf{H} \text{.}
+\end{equation}
+However, according to Maxwell's equations, \(\nabla \cdot \mathbf{B} = 0\). Therefore,
+\begin{equation}
+    \nabla \cdot \left( \nabla \times \mathbf{A} \right) = \left(1-q\right)\nabla \cdot \mathbf{H} \text{.}
+\end{equation}
+In general, \(\nabla \cdot \mathbf{H} \neq 0\). Thus, \(q = 1\) since \(\nabla \cdot \left( \nabla \times \mathbf{A} \right) = 0\) for any vector field \(\mathbf{A}\). Therefore, \(\varphi\) and \(\mathbf{A}\) can be written
+\begin{equation}
+    \nabla \varphi = \mathbf{H} \text{, and}
+\end{equation}
+\begin{equation}
+    \nabla \times \mathbf{A} = \frac{1}{\mu_0} \mathbf{B} \text{.}
+\end{equation}
+
+Thus, we have obtained an equation for the \(\mathbf{H}\)-field, which is described by
+\begin{equation}
+    \mathbf{H} = \nabla \varphi \text{.}
+\end{equation}
+Finally, upon simplification, we obtain the equation for the \(\mathbf{H}\)-field in the magnetic charge model,
+\begin{equation}
+    \mathbf{H} = \frac{1}{4\pi} \oiint_{S'} \left( \nabla' \cdot \mathbf{M}' \right) \frac{\mathbf{x}-\mathbf{x}'}{\left|\mathbf{x}-\mathbf{x}'\right|^3} ds' - \frac{1}{4\pi} \iiint_{V'} \left( \mathbf{M}' \times \hat{\mathbf{n}} \right) \frac{\mathbf{x}-\mathbf{x}'}{\left|\mathbf{x}-\mathbf{x}'\right|^3} dv' \text{.}
+\end{equation}
+In free space, the \(\mathbf{B}\) and \(\mathbf{H}\) fields are proportional, and thus
+\begin{equation}
+    \mathbf{B} = \frac{\mu_0}{4\pi} \oiint_{S'} \left( \nabla' \cdot \mathbf{M}' \right) \frac{\mathbf{x}-\mathbf{x}'}{\left|\mathbf{x}-\mathbf{x}'\right|^3} ds' - \frac{\mu_0}{4\pi} \iiint_{V'} \left( \mathbf{M}' \times \hat{\mathbf{n}} \right) \frac{\mathbf{x}-\mathbf{x}'}{\left|\mathbf{x}-\mathbf{x}'\right|^3} dv' \text{.}
+\end{equation}

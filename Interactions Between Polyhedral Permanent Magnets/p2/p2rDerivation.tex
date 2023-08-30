@@ -1,0 +1,81 @@
+The derivation of the rotation matrix \(R\) begins by defining a coordinate system on an arbitrary plane containing the polygonal surface \(S_{\!i}\). Let \(\left[ \hat{\mathbf{x}}, \hat{\mathbf{y}}, \hat{\mathbf{z}}\right]\) be the global coordinate system and let \(\hat{\mathbf{n}} = \left[ n_x, n_y, n_z\right]\) be the outward-facing unit normal vector of \(S_{\!i}\). We want to rotate this normal vector using the rotation matrix \(R\) such that \(\hat{\mathbf{n}} R = \hat{\mathbf{z}}\).
+
+To do this, a coordinate system \(\left[ \hat{\mathbf{x}}', \hat{\mathbf{y}}', \hat{\mathbf{z}}' \right]\) is defined on the arbitrary plane such that \( \hat{\mathbf{n}} = \hat{\mathbf{z}}'\). To rotate \(\left[ \hat{\mathbf{x}}', \hat{\mathbf{y}}', \hat{\mathbf{z}}' \right]\) to \(\left[ \hat{\mathbf{x}}, \hat{\mathbf{y}}, \hat{\mathbf{z}}\right]\), a rotation matrix given by
+
+\begin{equation}
+R = \begin{bmatrix}
+\hat{\mathbf{x}}'^{\textsf{T}} & \hat{\mathbf{y}}'^{\textsf{T}} & \hat{\mathbf{z}}'^{\textsf{T}}
+\end{bmatrix}
+\end{equation}
+
+\noindent can be used.
+
+Now, we have already defined
+
+\begin{equation}
+\hat{\mathbf{z}}' = \hat{\mathbf{n}} = \left[ n_x, n_y, n_z \right] \text{,}
+\end{equation}
+
+\noindent and \(\hat{\mathbf{x}}'\) and \(\hat{\mathbf{y}}'\) can be defined arbitrarily, provided \(\hat{\mathbf{x}}'\), \(\hat{\mathbf{y}}'\), and \(\hat{\mathbf{z}}'\) are mutually orthogonal unit vectors.
+
+Without loss of generality, define \(\hat{\mathbf{y}}' = \left[ 0, y_2, y_3\right]\). We know that the dot product of \(\hat{\mathbf{y}}'\) and \(\hat{\mathbf{z}}'\) will be 0, since they are orthogonal. Therefore,
+
+\begin{equation}\label{eqn:p2y2y3}
+\hat{\mathbf{z}}' \cdot \hat{\mathbf{y}}' = 0 + n_y y_2 + n_z y_3 = 0 \implies y_2 = -\frac{n_z}{n_y} y_3 \text{.}
+\end{equation}
+
+\noindent We also know that \(\hat{\mathbf{y}}'\) is a unit vector, so
+
+\begin{equation}\label{eqn:p2y2y32}
+\left|\hat{\mathbf{y}}'\right| = \sqrt{y_2^2 + y_3^2} = \sqrt{\frac{n_z^2}{n_y^2} y_3^2 + y_3^2} = 1 \text{.}
+\end{equation}
+
+\noindent Solving Equations (\ref{eqn:p2y2y3}) and (\ref{eqn:p2y2y32}) gives
+
+\begin{align}
+y_2 &= \mp \frac{n_z}{\sqrt{n_y^2+n_z^2}} \\
+y_3 &= \pm \frac{n_y}{\sqrt{n_y^2+n_z^2}} \text{.}
+\end{align}
+
+\noindent Taking the positive square root for \(y_2\) leads to
+
+\begin{equation}
+\hat{\mathbf{y}}' = \left[ 0, \frac{n_z}{\sqrt{n_y^2+n_z^2}}, -\frac{n_y}{\sqrt{n_y^2+n_z^2}} \right] \text{.}
+\end{equation}
+
+\noindent Finally, \(\hat{\mathbf{x}}'\) is simply given by \(\hat{\mathbf{x}}' = \hat{\mathbf{y}}' \times \hat{\mathbf{z}}'\). Therefore,
+
+\begin{equation}
+\hat{\mathbf{x}}' = \left[ \sqrt{n_y^2+n_z^2}, -\frac{n_xn_y}{\sqrt{n_y^2+n_z^2}}, -\frac{n_xn_z}{\sqrt{n_y^2+n_z^2}} \right] \text{.}
+\end{equation}
+
+\noindent Combining these gives the total rotation matrix
+
+\begin{equation}
+R = \begin{bmatrix}
+\sqrt{n_y^2+n_z^2} & 0 & n_x \\
+-\frac{n_xn_y}{\sqrt{n_y^2+n_z^2}} & \frac{n_z}{\sqrt{n_y^2+n_z^2}} & n_y \\
+-\frac{n_xn_z}{\sqrt{n_y^2+n_z^2}} & -\frac{n_y}{\sqrt{n_y^2+n_z^2}} & n_z \end{bmatrix} \text{.}
+\end{equation}
+
+\subsection*{Solving \texorpdfstring{\(R\) for \(n_y = n_z = 0\)}{R for ny = nz = 0}}
+
+If \(n_y = n_z = 0\) (and consequently \(n_x = \pm1\)), then \(R\) is undefined due to division by zero. Instead, let \(n_y = 0\) and take the limit as \(n_z \to 0^+\). Letting \(n_y = 0\) leads to \(\sqrt{n_y^2+n_z^2} = \left|n_z\right|\). Substituting \(n_y = 0\) into \(R\) and taking the limit of \(R\) as \(n_z \to 0^+\) gives
+
+\begin{equation}
+\lim_{n_z \to 0^+} R = \lim_{n_z \to 0^+} \begin{bmatrix}
+\left|n_z\right| & 0 & 1 \\
+0 & \sgn n_z & 0 \\
+- \sgn n_z & 0 & 0
+\end{bmatrix} \text{,}
+\end{equation}
+
+\noindent where \( \sgn n_z \) is the sign of \(n_z\). \(\lim_{n_z \to 0^+} \sgn n_z\) is unity, and \(\lim_{n_z \to 0^+} \left|n_z\right|\) is zero. Therefore,
+
+\begin{equation}
+\lim_{n_z \to 0^+} R = \begin{bmatrix}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+-1 & 0 & 0
+\end{bmatrix} \text{.}
+\end{equation}

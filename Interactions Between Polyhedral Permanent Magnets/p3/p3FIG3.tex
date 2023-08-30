@@ -1,0 +1,44 @@
+\def\lim{5}
+
+\tdplotsetmaincoords{0}{0}
+\begin{tikzpicture}[scale=0.115,tdplot_main_coords]
+
+% Define coordinates:
+\coordinate(ppb) at (15,20,-20);
+\coordinate(pnb) at (15,-20,-20);
+\coordinate(nnb) at (-15,-20,-20);
+\coordinate(npb) at (-15,20,-20);
+\coordinate(ppt) at (5,10,0);
+\coordinate(pnt) at (5,-10,0);
+\coordinate(nnt) at (-5,-10,0);
+\coordinate(npt) at (-5,10,0);
+
+% Draw shape:
+\draw (ppt) -- (pnt) -- (nnt) -- (npt) -- cycle;
+\draw (ppb) -- (pnb) -- (nnb) -- (npb) -- cycle;
+\draw (ppt) -- (ppb);
+\draw (pnt) -- (pnb);
+\draw (nnt) -- (nnb);
+\draw (npt) -- (npb);
+
+% Draw some lines of symmetry
+\draw[dashed,black!30] (-20,0,0) -- (20,0,0);
+\draw[dashed,black!30] (0,-25,0) -- (0,25,0);
+
+% Number the trapezia:
+\node[circle,draw,fill=white](1) at (11,0,0) {1};
+\node[circle,draw,fill=white](2) at (0,16,0) {2};
+\node[circle,draw,fill=white](3) at (-11,0,0) {3};
+\node[circle,draw,fill=white](4) at (0,-16,0) {4};
+
+% Axes:
+\draw[->] (0,0,0) -- (\lim,0,0);
+\draw[->] (0,0,0) -- (0,\lim,0);
+%\draw[->] (0,0,0) -- (0,0,\lim);
+\node(xaxis) at (\lim+2,0,0) {\(x\)};
+\node(yaxis) at (0,\lim+2,0) {\(y\)};
+%\node(zaxis) at (0,0,\lim+2) {\(z\)};
+
+
+
+\end{tikzpicture}

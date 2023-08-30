@@ -1,0 +1,21 @@
+Consider the system defined by the matrix equation
+\begin{equation}\label{eqn:p4invertibleProofEquation}
+    C \bm{\sigma} = K \bm{\sigma}_0 \text{,}
+\end{equation}
+where \(C\) is an \(N\times N\) square matrix and \(\bm{\sigma}\) and \(\bm{\sigma}_0\) are \(N\times 1\) vectors of final and initial surface charge densities respectively. This section will show that the matrix \(C\) is invertible using contradiction.
+
+Suppose \(C\) has at least one eigenvalue equal to zero, \(\lambda = 0\). This implies that there exists a \textit{non-zero} eigenvector \(\bm{\sigma}\) of \(C\) such that
+\begin{equation}
+    C\bm{\sigma} = \lambda \bm{\sigma} = 0 \bm{\sigma} = \mathbf{0} \text{.}
+\end{equation}
+Substituting this into Equation (\ref{eqn:p4invertibleProofEquation}) leads to
+\begin{equation}
+    K \bm{\sigma}_0 = \mathbf{0} \text{.}
+\end{equation}
+Since \(\mu_r\) is a finite positive value for the magnetic materials considered in this work, \(K \neq 0\), and thus,
+\begin{equation}
+    \bm{\sigma}_0 = \mathbf{0} \text{.}
+\end{equation}
+We know that \(\bm{\sigma} \neq \mathbf{0}\) by the definition of an eigenvector. Thus, this implies that there exists a system with zero initial magnetic charge density, \(\bm{\sigma}_0 = \mathbf{0}\), which becomes spontaneously magnetised, such that \(\bm{\sigma} \neq \mathbf{0}\), with no external field. This is clearly absurd, and the assumption of any eigenvalues being equal to zero fails. Thus, all eigenvalues of \(C\) must be nonzero and therefore \(C\) must be invertible.
+
+While \(C\) is invertible, it may have an undesirable condition number, leading to errors when inverting. However, this method uses constrained least squares, and \(C\) is never directly inverted; it is simply shown here to be invertible to imply a solution for \(\bm{\sigma}\) exists.

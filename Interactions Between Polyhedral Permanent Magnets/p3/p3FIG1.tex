@@ -1,0 +1,29 @@
+\def\lim{13}
+
+\tdplotsetmaincoords{70}{45}
+\begin{tikzpicture}[scale=0.115,tdplot_main_coords]
+
+% Define coordinates:
+\coordinate(ppb) at (15,20,-20);
+\coordinate(pnb) at (15,-20,-20);
+\coordinate(nnb) at (-15,-20,-20);
+\coordinate(npb) at (-15,20,-20);
+\coordinate(ppt) at (5,10,0);
+\coordinate(pnt) at (5,-10,0);
+\coordinate(nnt) at (-5,-10,0);
+\coordinate(npt) at (-5,10,0);
+
+% Fill in polygons:
+\filldraw[fill=white] (ppt) -- (pnt) -- (nnt) -- (npt) -- cycle;
+\filldraw[fill=white] (ppt) -- (ppb) -- (pnb) -- (pnt) -- cycle;
+\filldraw[fill=white] (pnt) -- (nnt) -- (nnb) -- (pnb) -- cycle;
+
+% Axes:
+\draw[->] (0,0,0) -- (\lim,0,0);
+\draw[->] (0,0,0) -- (0,\lim,0);
+\draw[->] (0,0,0) -- (0,0,\lim);
+\node(xaxis) at (\lim+2,0,0) {\(x\)};
+\node(yaxis) at (0,\lim+2,0) {\(y\)};
+\node(zaxis) at (0,0,\lim+2) {\(z\)};
+
+\end{tikzpicture}

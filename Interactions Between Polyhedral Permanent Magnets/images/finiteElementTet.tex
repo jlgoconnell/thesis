@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+
+\coordinate(c1) at (0,0,0);
+\coordinate(c2) at (0,0,4);
+\coordinate(c3) at (0,4,0);
+\coordinate(c4) at (4,0,0);
+
+\filldraw (c1) circle (2px) node[above right] {\(\varphi_1\)};
+\filldraw (c2) circle (2px) node[below left] {\(\varphi_2\)};
+\filldraw (c3) circle (2px) node[above] {\(\varphi_3\)};
+\filldraw (c4) circle (2px) node[right] {\(\varphi_4\)};
+
+\draw (c2) -- (c3) -- (c4) -- cycle;
+\draw[dashed] (c3) -- (c1) -- (c2);
+\draw[dashed] (c1) -- (c4);
+
+\end{tikzpicture}

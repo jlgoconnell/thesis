@@ -1,0 +1,77 @@
+\begin{subfigure}{0.4\textwidth}
+		\centering
+		\tdplotsetmaincoords{70}{110}
+		\begin{tikzpicture}[scale=40,tdplot_main_coords]
+		\coordinate(p1t) at (-0.050000,-0.050000,-0.000000);
+		\coordinate(p2t) at (-0.050000,0.050000,-0.000000);
+		\coordinate(p3t) at (0.050000,-0.050000,-0.000000);
+		\coordinate(p4t) at (0.050000,0.050000,-0.000000);
+		\coordinate(p5t) at (-0.025000,-0.025000,0.050000);
+		\coordinate(p6t) at (0.025000,-0.025000,0.050000);
+		\coordinate(p7t) at (-0.025000,0.025000,0.050000);
+		\coordinate(p8t) at (0.025000,0.025000,0.050000);
+		
+		\coordinate(p1b) at (0.050000,0.050000,-0.025000);
+		\coordinate(p2b) at (0.050000,-0.050000,-0.025000);
+		\coordinate(p3b) at (-0.050000,0.050000,-0.025000);
+		\coordinate(p4b) at (-0.050000,-0.050000,-0.025000);
+		\coordinate(p5b) at (0.025000,0.025000,-0.075000);
+		\coordinate(p6b) at (-0.025000,0.025000,-0.075000);
+		\coordinate(p7b) at (0.025000,-0.025000,-0.075000);
+		\coordinate(p8b) at (-0.025000,-0.025000,-0.075000);
+		
+		\draw[fill=white] (p4b) -- (p3b) -- (p1b) -- (p2b) -- cycle;
+		\draw[fill=white] (p1b) -- (p3b) -- (p6b) -- (p5b) -- cycle;
+		\draw[fill=white] (p1b) -- (p2b) -- (p7b) -- (p5b) -- cycle;
+		
+		\draw[fill=white] (p5t) -- (p6t) -- (p8t) -- (p7t) -- cycle;
+		\draw[fill=white] (p2t) -- (p4t) -- (p8t) -- (p7t) -- cycle;
+		\draw[fill=white] (p6t) -- (p8t) -- (p4t) -- (p3t) -- cycle;
+		
+		\node(A) at (-0.0375,-0.025,-0.08) {\text{A}};
+		\node(B) at (-0.0375,-0.025,-0.005) {\text{B}};
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	~ \hspace{20pt}
+	\begin{subfigure}{0.4\textwidth}
+		\centering
+		\tdplotsetmaincoords{90}{0}
+		\begin{tikzpicture}[scale=40,tdplot_main_coords]
+		\coordinate(p1t) at (-0.050000,-0.050000,-0.000000);
+		\coordinate(p2t) at (-0.050000,0.050000,-0.000000);
+		\coordinate(p3t) at (0.050000,-0.050000,-0.000000);
+		\coordinate(p4t) at (0.050000,0.050000,-0.000000);
+		\coordinate(p5t) at (-0.025000,-0.025000,0.050000);
+		\coordinate(p6t) at (0.025000,-0.025000,0.050000);
+		\coordinate(p7t) at (-0.025000,0.025000,0.050000);
+		\coordinate(p8t) at (0.025000,0.025000,0.050000);
+		
+		\coordinate(p1b) at (0.050000,0.050000,-0.025000);
+		\coordinate(p2b) at (0.050000,-0.050000,-0.025000);
+		\coordinate(p3b) at (-0.050000,0.050000,-0.025000);
+		\coordinate(p4b) at (-0.050000,-0.050000,-0.025000);
+		\coordinate(p5b) at (0.025000,0.025000,-0.075000);
+		\coordinate(p6b) at (-0.025000,0.025000,-0.075000);
+		\coordinate(p7b) at (0.025000,-0.025000,-0.075000);
+		\coordinate(p8b) at (-0.025000,-0.025000,-0.075000);
+		
+		\draw[gray] (p2b) -- (p4b) -- (p8b) -- (p7b) -- cycle;
+		\draw[gray] (p1t) -- (p3t) -- (p6t) -- (p5t) -- cycle;
+		
+		\draw[<->] (0,0,-0.025) -- (0,0,0);
+		\node (d) at (0.005,0,-0.0125) {\(d\)};
+		
+		\draw[->,thick] (0,0,0.035) -- (0,0,0.015);
+		\node (M1) at (-0.0075,0,0.025) {\textbf{M}};
+		\draw[->,thick] (0,0,-0.06) -- (0,0,-0.04);
+		\node (M2) at (-0.0075,0,-0.05) {\textbf{M}};
+		
+		\node(theta1) at (-0.022,0,0.043){\(\theta\)};
+		\node(theta2) at (-0.022,0,-0.068){\(\theta\)};
+		\node(A) at (0.025,0,-0.05) {\text{A}};
+		\node(B) at (0.025,0,0.025) {\text{B}};
+		
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}

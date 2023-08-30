@@ -1,0 +1,71 @@
+
+
+\begin{subfigure}[t]{0.45\linewidth}
+
+\centering
+\begin{tikzpicture}[scale = 0.3]
+
+\def\LL{1}
+\def\ll{4.5950}
+\def\hh{5.5312}
+
+% Define coordinates:
+\coordinate(tl) at (-\LL,0);
+\coordinate(tr) at (\LL,0);
+\coordinate(bl) at (-\ll,-\hh);
+\coordinate(br) at (\ll,-\hh);
+
+% Draw shape
+\draw (tl) -- (tr) -- (br) -- (bl) -- cycle;
+
+% Draw dimensions
+\def\hoffset{6}
+\draw[<->] (-\hoffset,0) -- (-\hoffset,-\hh);
+\node(h) at (-\hoffset-1.5,-2.7656) {0.951};
+\draw[<->] (-\ll,-\hh-1.5) -- (\ll,-\hh-1.5);
+\node(l) at (0,-\hh-2.5) {1.580};
+\draw[<->] (-\LL,1.5) -- (\LL,1.5);
+\node(L) at (0,2.5) {0.344};
+
+\end{tikzpicture}
+
+\subcaption{}
+%\label{subfig:frustumschematic}
+
+\end{subfigure}
+~ \hfill ~
+\begin{subfigure}[t]{0.45\linewidth}
+
+\centering
+\begin{tikzpicture}[scale = 0.3]
+	
+\def\LL{2.3647}
+\def\ll{2.3647}
+\def\hh{8.8066}
+
+% Define coordinates:
+\coordinate(tl) at (-\LL,0);
+\coordinate(tr) at (\LL,0);
+\coordinate(bl) at (-\ll,-\hh);
+\coordinate(br) at (\ll,-\hh);
+
+% Draw shape
+\draw (tl) -- (tr) -- (br) -- (bl) -- cycle;
+
+% Draw dimensions
+\def\hoffset{5}
+\draw[<->] (\hoffset,0) -- (\hoffset,-\hh);
+\node(h) at (\hoffset+1.5,-4.4033) {1.514};
+\draw[<->] (-\ll,-\hh-1.5) -- (\ll,-\hh-1.5);
+\node(l) at (0,-\hh-2.5) {0.813};
+
+% Draw an invisible line to centre the figure
+%\draw[<->,white] (-\hoffset-2,0) -- (-\hoffset-2,-\hh);
+
+\end{tikzpicture}
+
+\subcaption{}
+%\label{subfig:frustumschematic}
+
+\end{subfigure}
+
